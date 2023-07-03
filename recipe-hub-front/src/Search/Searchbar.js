@@ -3,8 +3,6 @@ import '../css/SearchBar.css';
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
 
     return (
-
-        <form action='/search' method='get'>
             <div>
                 <label htmlFor='header-search'>
                     <span className='visually-hidden'>Search products</span>
@@ -18,8 +16,6 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
                     name="q" 
                 />
             </div>
-        </form>
-
 )
 }
 
