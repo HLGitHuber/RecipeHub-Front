@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ClickForMoreButton from './ClickForMoreButton';
-
 
 class RecipesList extends Component{
   constructor(){
@@ -26,15 +24,17 @@ class RecipesList extends Component{
     }
   }
 
+  displayAlert(){
+    alert("you're recipe")
+}
+
   displayRecipe(index) {
     const recipe = this.state.recipes[index];
 
     return (
-        <div key={index}>
-            <p>{recipe.name} {recipe.time} <ClickForMoreButton/></p>
-            {/* <p>{recipe.name} {recipe.time} <button>Click</button></p> */}
-
-        </div>
+      <div key={index}>
+        <p>{recipe.name} {recipe.time} <button onClick={this.displayAlert}>Click</button></p>
+      </div>
     )
   }
 
@@ -47,6 +47,7 @@ class RecipesList extends Component{
     return (
       <div>
         <h2>Recipes</h2>
+        <h4>Name        Time</h4>
         {this.displayAllRecipes()}
       </div>
     )
