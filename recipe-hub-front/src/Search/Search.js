@@ -20,8 +20,7 @@ const doSearch = (term, query) => {
 
 const Search = () => {
     
-    const { search } = window.location
-    const query = new URLSearchParams(search).get('q')
+    const query = new URLSearchParams(useLocation().search).get('q')
     const [searchQuery, setSearchQuery] = useState(query || '')
     const returned = doSearch(Items, searchQuery)
     console.log(query)
