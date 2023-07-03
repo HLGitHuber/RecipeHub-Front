@@ -1,27 +1,28 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import ClickForMoreButton from './ClickForMoreButton';
+
 
 class RecipesList extends Component{
   constructor(){
     super()
     this.state = {
-        recipes: [
-            {
-                id: 1,
-                name: 'lorem',
-                time: '20',
-            },
-            {
-                id: 2,
-                name: 'ipsum',
-                time: '30',
-            },
-            {
-                id: 3,
-                name: 'dolorum',
-                time: '40',
-            }
-
-        ]
+      recipes: [
+        {
+          id: 1,
+          name: 'lorem',
+          time: '20',
+        },
+        {
+          id: 2,
+          name: 'ipsum',
+          time: '30',
+        },
+        {
+          id: 3,
+          name: 'dolorum',
+          time: '40',
+        }
+      ]
     }
   }
 
@@ -30,12 +31,14 @@ class RecipesList extends Component{
 
     return (
         <div key={index}>
-            <p>{recipe.name} {recipe.time}</p>
+            <p>{recipe.name} {recipe.time} <ClickForMoreButton/></p>
+            {/* <p>{recipe.name} {recipe.time} <button>Click</button></p> */}
+
         </div>
     )
   }
 
-  displayAllRecipess(){
+  displayAllRecipes(){
     return this.state.recipes.map((recipe)=> this.displayRecipe(this.state.recipes.indexOf(recipe)))
 
   }
@@ -43,8 +46,8 @@ class RecipesList extends Component{
   render() {
     return (
       <div>
-                <h2>Recipes</h2>
-                {this.displayAllRecipess()}
+        <h2>Recipes</h2>
+        {this.displayAllRecipes()}
       </div>
     )
   }
