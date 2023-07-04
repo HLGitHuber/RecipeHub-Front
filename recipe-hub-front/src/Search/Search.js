@@ -63,10 +63,10 @@ const Search = () => {
       <h1>Search</h1>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <div style={{ backgroundColor: 'green' }}>
-        <div style={{ display: 'inline-block', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
+        <div id='searchProducts' style={{ display: 'inline-block', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
           <ProductList items={returned} onItemClick={toggleSelection} />
         </div>
-        <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
+        <div id='myProducts' style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
           <ProductList items={chosenProductsList} onItemClick={toggleSelection} />
         </div>
       </div>
