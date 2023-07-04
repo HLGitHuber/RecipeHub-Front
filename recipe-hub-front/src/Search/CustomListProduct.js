@@ -1,10 +1,10 @@
 import React from 'react';
 import { ListItem, ListItemText } from '@mui/material';
 
-const CustomListProduct = ({ item, onClick }) => {
+const CustomListProduct = ({ product, onClick }) => {
   return (
-    <ListItem button onClick={onClick}>
-      <ListItemText primary={item.name} />
+    <ListItem button onClick={onClick} key={product.id}>
+      <ListItemText primary={product.name} />
     </ListItem>
   );
 };

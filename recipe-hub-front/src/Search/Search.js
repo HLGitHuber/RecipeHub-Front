@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SearchBar from './Searchbar';
 import ProductList from './ProductList';
 
 const Search = () => {
-  const [productList, setProductList] = useState([
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Milk' },
-    { id: 3, name: 'Bread' },
-    { id: 4, name: 'Chicken' },
-  ]);
+  const [productList, setProductList] = useState([]);
 
   const [chosenProductsList, setChosenProductsList] = useState([]);
 
@@ -33,17 +28,35 @@ const Search = () => {
   };
 
   const doSearch = (term, query) => {
-    if (!term) return productList;
+    if (!term || !query) return productList;
 
-    return productList.filter(
-      (product) =>
-        product.name.toLowerCase().includes(query.toLowerCase())
+    return productList.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
     );
   };
 
   const query = new URLSearchParams(useLocation().search).get('q');
   const [searchQuery, setSearchQuery] = useState(query || '');
-  const returned = doSearch(searchQuery);
+  const returned = doSearch(searchQuery, searchQuery);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch('https://localhost:44395/FoodData'); // Replace with the actual API endpoint for fetching products
+        const data = await response.json();
+        const updatedProductList = data.map((item) => ({
+          id: item.id,
+          name: item.name, // Update to use the "name" property from the API response
+        }));
+        setProductList(updatedProductList);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+  
+    fetchProducts();
+  }, []);
+
 
   return (
     <div>
@@ -62,5 +75,4 @@ const Search = () => {
 };
 
 export default Search;
-
 

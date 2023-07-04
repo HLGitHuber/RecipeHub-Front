@@ -8,7 +8,7 @@ const ProductList = ({ items, onItemClick }) => {
       {items.map((item) => (
         <CustomListProduct
           key={item.id}
-          item={item}
+          product={item}
           onClick={() => onItemClick(item.id)}
         />
       ))}
