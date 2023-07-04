@@ -1,11 +1,11 @@
-import RecipePage from "./RecipesList/RecipePage";
+import RecipePage from "./RecipePage/RecipePage";
 import RecipesList from "./RecipesList/RecipesList";
 import RouterReact from "./Router/RouterReact";
 
 function App() {
   return (
     <div className="App">
-      <RecipePage />
+      <RecipesList />
     </div>
   );
 }

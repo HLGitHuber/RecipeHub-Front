@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 class RecipePage extends Component{
   constructor(){
     super()
@@ -32,5 +33,6 @@ class RecipePage extends Component{
     )
   }
 }
+
 
 export default RecipePage

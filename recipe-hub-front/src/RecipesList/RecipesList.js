@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Router, Button, RouterLink} from 'react';
+import { useNavigate } from "react-router-dom";
+import RouterReact from "../Router/RouterReact";
+
 
 class RecipesList extends Component{
   constructor(){
@@ -30,10 +33,12 @@ class RecipesList extends Component{
 
   displayRecipe(index) {
     const recipe = this.state.recipes[index]
+    const navigate = useNavigate();
 
     return (
       <div key={index}>
         <p>{recipe.name} {recipe.time} <button onClick={this.displayAlert}>Click</button></p>
+
       </div>
     )
   }
