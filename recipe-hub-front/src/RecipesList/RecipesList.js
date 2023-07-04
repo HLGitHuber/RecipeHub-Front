@@ -29,7 +29,7 @@ class RecipesList extends Component{
 }
 
   displayRecipe(index) {
-    const recipe = this.state.recipes[index];
+    const recipe = this.state.recipes[index]
 
     return (
       <div key={index}>
@@ -53,7 +53,5 @@ class RecipesList extends Component{
     )
   }
 }
-
-
 
 export default RecipesList
