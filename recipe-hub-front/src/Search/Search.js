@@ -46,7 +46,7 @@ const Search = () => {
         const data = await response.json();
         const updatedProductList = data.map((item) => ({
           id: item.id,
-          name: item.name, // Update to use the "name" property from the API response
+          name: item.name, 
         }));
         setProductList(updatedProductList);
       } catch (error) {
