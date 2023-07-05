@@ -1,59 +1,50 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react'
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
+function RecipesList() {
 
-class RecipesList extends Component{
-  constructor(){
-    super()
-    this.state = {
-      recipes: [
-        {
-          id: 1,
-          name: 'lorem',
-          time: '20',
-        },
-        {
-          id: 2,
-          name: 'ipsum',
-          time: '30',
-        },
-        {
-          id: 3,
-          name: 'dolorum',
-          time: '40',
-        }
-      ]
+  const [recipes, setRecipes] = useState([
+    {
+      id: 1,
+      name: 'lorem',
+      time: '20',
+    },
+    {
+      id: 2,
+      name: 'ipsum',
+      time: '30',
+    },
+    {
+      id: 3,
+      name: 'dolorum',
+      time: '40',
     }
+  ]); 
+
+  const DisplayRecipe = (index) => {
+      const recipe = recipes[index]
+
+      return (
+        <div key={index}>
+          <p>{recipe.name} {recipe.time} 
+          <Link to={"/recipe"} state={recipe}><Button>recipe</Button></Link>
+          </p>
+        </div>
+      )
   }
 
-  displayAlert(){
-    alert("you're recipe")
+const displayAllRecipes = () => {
+  return recipes.map((recipe)=> DisplayRecipe(recipes.indexOf(recipe)))
 }
 
-  displayRecipe(index) {
-    const recipe = this.state.recipes[index]
-
     return (
-      <div key={index}>
-        <p>{recipe.name} {recipe.time} <button onClick={this.displayAlert}>Click</button></p>
-
-      </div>
-    )
-  }
-
-  displayAllRecipes(){
-    return this.state.recipes.map((recipe)=> this.displayRecipe(this.state.recipes.indexOf(recipe)))
-
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Recipes</h2>
-        <h4>Name        Time</h4>
-        {this.displayAllRecipes()}
-      </div>
-    )
-  }
+        <div>
+          <h2>Recipes</h2>
+          <h4>Name        Time</h4>
+          {displayAllRecipes()}
+        </div>
+      )
 }
 
 export default RecipesList

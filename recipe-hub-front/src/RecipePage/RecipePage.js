@@ -1,38 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 
-class RecipePage extends Component{
-  constructor(){
-    super()
-    this.state = {
-      recipe: {
-          id: 1,
-          name: 'lorem',
-          time: '20',
-          text: 'ipsum et dolorum'
-        }
-    }
-  }
 
-  displayRecipe() {
-    const recipe = this.state.recipe
+const RecipePage = () => {
+
+  const location = useLocation();
+  const { state } = location;
+
+  const DisplayRecipe = () => {
     return (
       <div>
-        <p><h3>{recipe.name}</h3> Time to prepare: {recipe.time}</p>
+        <p><h3>{state.name}</h3> Time to prepare: {state.time}</p>
         <p/>
-        <p>{recipe.text}</p>
-        <p>Id from link is {}</p>
+        <p>{state.text}</p>
+        <p>Id from link is {state.id}</p>
       </div>
     )
-  }
+}
 
-  render() {
-    return (
-      <div>
-        {this.displayRecipe()}
-      </div>
-    )
-  }
+return (
+  <div>
+  {DisplayRecipe()}
+</div>
+)
+
 }
 
 
