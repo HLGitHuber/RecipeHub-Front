@@ -1,6 +1,4 @@
-import React, {Component, Router, Button, RouterLink} from 'react';
-import { useNavigate } from "react-router-dom";
-import RouterReact from "../Router/RouterReact";
+import React, {Component} from 'react';
 
 
 class RecipesList extends Component{
@@ -33,7 +31,6 @@ class RecipesList extends Component{
 
   displayRecipe(index) {
     const recipe = this.state.recipes[index]
-    const navigate = useNavigate();
 
     return (
       <div key={index}>

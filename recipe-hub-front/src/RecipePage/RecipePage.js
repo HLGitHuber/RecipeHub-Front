@@ -18,8 +18,10 @@ class RecipePage extends Component{
     const recipe = this.state.recipe
     return (
       <div>
-        <p><h3>{recipe.name}</h3> {recipe.time}</p>
+        <p><h3>{recipe.name}</h3> Time to prepare: {recipe.time}</p>
+        <p/>
         <p>{recipe.text}</p>
+        <p>Id from link is {}</p>
       </div>
     )
   }
@@ -27,7 +29,6 @@ class RecipePage extends Component{
   render() {
     return (
       <div>
-        <h4>Name Time</h4>
         {this.displayRecipe()}
       </div>
     )
