@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SearchBar from './Searchbar';
 import ProductList from './ProductList';
+import Button from '@mui/material/Button';
+import '../css/Search.css';
+import {Helmet} from 'react-helmet';
+import SearchIcon from '@mui/icons-material/Search';
+import IconButton from '@mui/material/IconButton';
 
 const Search = () => {
   const [productList, setProductList] = useState([]);
@@ -59,18 +64,35 @@ const Search = () => {
 
 
   return (
-    <div>
-      <h1>Search</h1>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <div style={{ backgroundColor: 'green' }}>
-        <div id='searchProducts' style={{ display: 'inline-block', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
-          <ProductList items={returned} onItemClick={toggleSelection} />
+    <>
+    <Helmet>
+      <style>
+        {'body { background-color: #8f8f24; }'}
+      </style>
+    </Helmet>
+      <div id='main' style={{ flex: 1, position: 'relative', height: '100%' }}>
+        <div className='coolHeader'>
+          <h1>Provide ingredients you have</h1>
         </div>
-        <div id='myProducts' style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', maxWidth: '200px', border: '1px solid black' }}>
-          <ProductList items={chosenProductsList} onItemClick={toggleSelection} />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <div style={{ display: 'flex' }}>
+          <div id='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '30%' }}>
+            <ProductList items={returned} onItemClick={toggleSelection} />
+          </div>
+          <div id='myProducts' style={{ flex: 1, maxWidth: '30%' }}>
+            <ProductList items={chosenProductsList} onItemClick={toggleSelection} />
+            <Link to={'/recipes'}>
+              <Button variant="contained" startIcon={<SearchIcon />} style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }} >
+                Suggest meal for me
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+      <div className='SearchBackgroundImg' style={{ flex: 1, position: 'fixed', top: 0, right: 0, width: '40%', height: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+      </div>
+    </>
+
   );
 };
 

@@ -1,0 +1,44 @@
+.coolHeader h1 {
+    font-size: 60px;
+    font-weight: 500;
+    color: bisque;
+    border-right: 4px solid #000;
+    /* animation: cursor 1s infinite step-end, typing 15s infinite steps(20); */
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+/* .coolHeader {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+@keyframes cursor{
+    0%, 100%{border-color: transparent;}
+    50%{border-color: #000;}
+}
+
+@keyframes typing{
+    0%{ width: 0ch} 
+    30%{ width: 16ch;} 
+    80%{ width: 16ch;} 
+    90%{ width: 0ch;} 
+    100%{ width: 0ch;} 
+  } */
+
+.SearchBackgroundImg {
+    background-image: url("../Search/background.jpg");
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
