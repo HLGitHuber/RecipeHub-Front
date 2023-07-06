@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import "../css/basicPage.css"
 
 function RecipesList() {
 
@@ -22,13 +23,14 @@ function RecipesList() {
     }
   ]); 
 
+
   const DisplayRecipe = (index) => {
       const recipe = recipes[index]
 
       return (
         <div key={index}>
           <p>{recipe.name} {recipe.time} 
-          <Link to={"/recipe"} state={recipe}><Button>recipe</Button></Link>
+          <Link to={"/recipe"} state={recipe}><Button variant="contained" color="warning">recipe</Button></Link>
           </p>
         </div>
       )
@@ -39,10 +41,12 @@ const displayAllRecipes = () => {
 }
 
     return (
-        <div>
-          <h2>Recipes</h2>
-          <h4>Name        Time</h4>
-          {displayAllRecipes()}
+        <div className='background'>
+          <div className='container'>
+            <h2>Recipes</h2>
+            <h4>Name        Time</h4>
+            {displayAllRecipes()}
+          </div>
         </div>
       )
 }

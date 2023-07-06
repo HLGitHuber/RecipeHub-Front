@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-
-
+import "../css/basicPage.css"
 
 const RecipePage = () => {
 
@@ -20,12 +19,13 @@ const RecipePage = () => {
 }
 
 return (
-  <div>
-  {DisplayRecipe()}
+  <div className='background'>
+    <div className='container'>
+      {DisplayRecipe()}
+    </div>
 </div>
 )
 
 }
-
 
 export default RecipePage
