@@ -76,10 +76,10 @@ const Search = () => {
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div style={{ display: 'flex' }}>
           <div id='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
-            <ProductList items={returned} onItemClick={toggleSelection} />
+            <ProductList items={returned} onItemClick={toggleSelection} icon='add'/>
           </div>
           <div id='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
-            <ProductList items={chosenProductsList} onItemClick={toggleSelection} />
+            <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
             <Link to={'/recipes'}>
               <Button variant="contained" startIcon={<SearchIcon />} style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }} >
                 Suggest meal for me
