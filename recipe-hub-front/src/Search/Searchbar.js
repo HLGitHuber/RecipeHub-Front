@@ -8,7 +8,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
     return (
         <Paper
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '25%', backgroundColor: 'bisque' }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '50%', backgroundColor: 'bisque' }}
       >
         <InputBase
           value={searchQuery}
