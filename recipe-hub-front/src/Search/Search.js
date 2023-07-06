@@ -75,10 +75,11 @@ const Search = () => {
         </div>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div style={{ display: 'flex' }}>
-          <div id='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
+          <div className='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
             <ProductList items={returned} onItemClick={toggleSelection} icon='add'/>
           </div>
-          <div id='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
+          <div className='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
+            <h2>Your ingredients</h2>
             <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
             <Link to={'/recipes'}>
               <Button variant="contained" startIcon={<SearchIcon />} style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }} >

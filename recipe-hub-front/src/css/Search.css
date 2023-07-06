@@ -19,6 +19,11 @@
     margin: 0;
   }
 
+  .myProducts h2 {
+    margin-bottom: 0%;
+    color: bisque;
+  }
+
   .left-element {
     flex: 1;
     /* Styles for the left element */
