@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import '../css/Search.css';
 import {Helmet} from 'react-helmet';
 import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
 
 const Search = () => {
   const [productList, setProductList] = useState([]);
@@ -64,22 +63,22 @@ const Search = () => {
 
 
   return (
-    <>
+    <div className='main'>
     <Helmet>
-      <style>
+    <style>
         {'body { background-color: #8f8f24; }'}
-      </style>
+    </style>
     </Helmet>
-      <div id='main' style={{ flex: 1, position: 'relative', height: '100%' }}>
+      <div className='left-element' >
         <div className='coolHeader'>
           <h1>Provide ingredients you have</h1>
         </div>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div style={{ display: 'flex' }}>
-          <div id='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '30%' }}>
+          <div id='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
             <ProductList items={returned} onItemClick={toggleSelection} />
           </div>
-          <div id='myProducts' style={{ flex: 1, maxWidth: '30%' }}>
+          <div id='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
             <ProductList items={chosenProductsList} onItemClick={toggleSelection} />
             <Link to={'/recipes'}>
               <Button variant="contained" startIcon={<SearchIcon />} style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }} >
@@ -89,12 +88,10 @@ const Search = () => {
           </div>
         </div>
       </div>
-      <div className='SearchBackgroundImg' style={{ flex: 1, position: 'fixed', top: 0, right: 0, width: '40%', height: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-      </div>
-    </>
+      <div className='right-element' />
+    </div>
 
   );
 };
 
 export default Search;
-
