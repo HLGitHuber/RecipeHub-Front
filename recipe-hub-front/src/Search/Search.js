@@ -37,17 +37,18 @@ const Search = () => {
     }
   };
 
-  const doSearch = (term, query) => {
-    if (!term || !query) return productList;
+  const doSearchLimit10 = (term, query) => {
+
+    if (!productList) return []
 
     return productList.filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
-    );
+    ).slice(0, 10)
   };
 
   const query = new URLSearchParams(useLocation().search).get('q');
   const [searchQuery, setSearchQuery] = useState(query || '');
-  const returned = doSearch(searchQuery, searchQuery);
+  const returned = doSearchLimit10(searchQuery, searchQuery);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -84,17 +85,21 @@ const Search = () => {
           <div className='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
             <ProductList items={returned} onItemClick={toggleSelection} icon='add'/>
           </div>
-          <div className='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
+          <div className='myProducts' style={{ flex: 1, maxWidth: '50%', maxHeight: '560px'  }}>
             <h2>Your ingredients</h2>
-            <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
-            <Button 
-              variant="contained"
-              startIcon={<SearchIcon />} 
-              style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }}
-              onClick={() => handleNavigateButtonClick(chosenProductsList)}
-              >
-              Suggest meal for me
-            </Button>
+            <div className='scrollable-content'>
+              <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
+            </div>
+            <div class="button-wrapper">
+              <Button
+                variant="contained"
+                startIcon={<SearchIcon />}
+                style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }}
+                onClick={() => handleNavigateButtonClick(chosenProductsList)}
+                >
+                Suggest meal for me
+              </Button>
+            </div>
           </div>
         </div>
       </div>
