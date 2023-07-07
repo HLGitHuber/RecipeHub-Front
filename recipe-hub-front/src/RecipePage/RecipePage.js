@@ -10,10 +10,11 @@ const RecipePage = () => {
   const DisplayRecipe = () => {
     return (
       <div>
-        <p><h3>{state.name}</h3> Time to prepare: {state.time}</p>
-        <p/>
-        <p>{state.text}</p>
-        <p>Id from link is {state.id}</p>
+        <h2 className='heading'>{state.name}</h2> 
+        <p className='text'>Time to prepare: {state.time}</p>
+        <p className='text'>{state.text}</p>
+        <p className='text'>Description:</p>
+        <p className='text'>{state.description}</p>
       </div>
     )
 }

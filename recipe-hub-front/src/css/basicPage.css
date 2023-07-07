@@ -1,4 +1,3 @@
-
 body,
 html {
   margin: 0;
@@ -8,6 +7,8 @@ html {
 }
 
 .container {
+    margin-left: 0;
+    padding-left: 0;
   position: relative;
   width: 100%;
   height: 100%;
@@ -25,4 +26,36 @@ html {
   background-size: cover;
   background-position: center;
 }
+
+.heading {
+    margin: 20px;
+
+}
+
+.text {
+    margin-left: 25px;
+    width:60%;
+}
+
+.line {
+    display: inline-block;
+}
+
+
+
+table {
+    margin-left: 25px;
+    border-collapse: collapse;
+    width: 60%;
+  }
+
+  th {
+    text-align: left;
+
+  }
+
+td {
+    text-align: left;
+    padding: 8px;
+  }
 

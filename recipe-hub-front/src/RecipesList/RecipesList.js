@@ -10,16 +10,19 @@ function RecipesList() {
       id: 1,
       name: 'lorem',
       time: '20',
+      description: 'lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? ',
     },
     {
       id: 2,
       name: 'ipsum',
       time: '30',
+      description: 'lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? ',
     },
     {
       id: 3,
       name: 'dolorum',
       time: '40',
+      description: 'lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? ',
     }
   ]); 
 
@@ -28,10 +31,9 @@ function RecipesList() {
       const recipe = recipes[index]
 
       return (
-        <div key={index}>
-          <p>{recipe.name} {recipe.time} 
-          <Link to={"/recipe"} state={recipe}><Button variant="contained" color="warning">recipe</Button></Link>
-          </p>
+        <div key={index} className='text'>
+            <tr><td>{recipe.name}</td><td>{recipe.time}</td><td><Link to={"/recipe"} state={recipe}><Button variant="contained" 
+            color="warning">Show recipe</Button></Link></td></tr>
         </div>
       )
   }
@@ -43,9 +45,11 @@ const displayAllRecipes = () => {
     return (
         <div className='background'>
           <div className='container'>
-            <h2>Recipes</h2>
-            <h4>Name        Time</h4>
+            <h2 className='heading'>Recipes we've found for you</h2> 
+            <table>
+            <tr><th>Recipe name</th><th>Preparation time</th><th></th></tr>
             {displayAllRecipes()}
+            </table>
           </div>
         </div>
       )
