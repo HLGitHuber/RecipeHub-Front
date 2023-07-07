@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from './Searchbar';
 import ProductList from './ProductList';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import '../css/Search.css';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = () => {
   const [productList, setProductList] = useState([]);
 
   const [chosenProductsList, setChosenProductsList] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleNavigateButtonClick = (products) => {
+    navigate(`/recipes`, { state: { selectedProducts: products } });
+  };
 
   const toggleSelection = (itemId) => {
     const selectedItem = productList.find((item) => item.id === itemId);
@@ -81,11 +87,14 @@ const Search = () => {
           <div className='myProducts' style={{ flex: 1, maxWidth: '50%' }}>
             <h2>Your ingredients</h2>
             <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
-            <Link to={'/recipes'}>
-              <Button variant="contained" startIcon={<SearchIcon />} style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }} >
-                Suggest meal for me
-              </Button>
-            </Link>
+            <Button 
+              variant="contained"
+              startIcon={<SearchIcon />} 
+              style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }}
+              onClick={() => handleNavigateButtonClick(chosenProductsList)}
+              >
+              Suggest meal for me
+            </Button>
           </div>
         </div>
       </div>
