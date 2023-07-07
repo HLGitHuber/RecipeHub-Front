@@ -3,7 +3,7 @@ import RouterReact from "./Router/RouterReact";
 function App() {
   return (
     <div className="App">
-      <RouterReact />
+      <RouterReact/>
     </div>
   );
 }

@@ -1,0 +1,61 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+    margin-left: 0;
+    padding-left: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/basicPage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.heading {
+    margin: 20px;
+
+}
+
+.text {
+    margin-left: 25px;
+    width:60%;
+}
+
+.line {
+    display: inline-block;
+}
+
+
+
+table {
+    margin-left: 25px;
+    border-collapse: collapse;
+    width: 60%;
+  }
+
+  th {
+    text-align: left;
+
+  }
+
+td {
+    text-align: left;
+    padding: 8px;
+  }
+
