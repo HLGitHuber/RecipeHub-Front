@@ -5,6 +5,7 @@ import Homepage from './Homepage';
 import Search from '../Search/Search';
 import RecipePage from '../RecipePage/RecipePage';
 import RecipesList from '../RecipesList/RecipesList';
+import UserPanel from '../UserPanel/UserPanel';
 
 const RouterReact = () => {
 
@@ -15,6 +16,7 @@ const RouterReact = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/recipes" element={<RecipesList/>} />
             <Route path="/recipe" element={<RecipePage/>} />
+            <Route path="/userpanel" element={<UserPanel/>} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
