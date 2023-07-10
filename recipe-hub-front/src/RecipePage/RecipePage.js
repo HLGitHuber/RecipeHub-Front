@@ -19,6 +19,8 @@ const RecipePage = () => {
     )
 }
 
+//adding fav button 
+
 return (
   <div className='background'>
     <div className='container'>
