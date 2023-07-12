@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from 'react'
 
 function UserPanel(){
+    const favrecipes =[
+        {name: "Meat lasagne", cooktime :35},
+        {name: "Spaghetti Bolognese", cooktime :30},
+        {name: "Chicken with rice", cooktime :20},
+    ]
+
    const [data, setData] = useState([])
    useEffect(()=>{
     async function fetchData(){
@@ -14,12 +20,32 @@ function UserPanel(){
         fetchData();
     }, []);
     return(
-<div>
+<div class= 'Main'>
+<style>
+        {'body { background-color: #8f8f24; }'}
+    </style>
 <h3>User name: {data.userName}</h3>
 
 <p>Name: {data.firstName} {data.lastName}</p>
-<h3>About:</h3>
-<p>{data.bio}</p>
+<tr>
+<th><h5>Favourite recipes:</h5></th>
+<th><h5>Cooking time</h5></th>
+</tr>
+{favrecipes.map((recipe, key)=>{
+    return(
+<tr>
+<th>{recipe.name}</th>
+<th>{recipe.cooktime}</th>
+<th><button>See Details</button></th>
+<th><button>Remove</button></th>
+
+</tr>
+
+
+    )
+
+})}
+
 
 </div>
     )
