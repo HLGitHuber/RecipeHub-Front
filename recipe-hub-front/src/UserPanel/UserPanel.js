@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { FavouriteRecipe } from './FavouriteRecipe';
 
 function UserPanel(){
     const favrecipes =[
@@ -6,6 +7,7 @@ function UserPanel(){
         {name: "Spaghetti Bolognese", cooktime :30},
         {name: "Chicken with rice", cooktime :20},
     ]
+
 
    const [data, setData] = useState([])
    useEffect(()=>{
@@ -33,23 +35,11 @@ function UserPanel(){
 </tr>
 {favrecipes.map((recipe, key)=>{
     return(
-<tr>
-<th>{recipe.name}</th>
-<th>{recipe.cooktime}</th>
-<th><button>See Details</button></th>
-<th><button>Remove</button></th>
-
-</tr>
-
-
+        <FavouriteRecipe name={recipe.name} cooktime={recipe.cooktime}/>
     )
-
 })}
-
-
 </div>
     )
-
 }
 
 export default UserPanel
