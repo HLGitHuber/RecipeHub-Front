@@ -5,6 +5,8 @@ import Homepage from './Homepage';
 import Search from '../Search/Search';
 import RecipePage from '../RecipePage/RecipePage';
 import RecipesList from '../RecipesList/RecipesList';
+import Login from '../Login/Login';
+
 
 const RouterReact = () => {
 
@@ -15,6 +17,7 @@ const RouterReact = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/recipes" element={<RecipesList/>} />
             <Route path="/recipe/:id" element={<RecipePage/>} />
+            <Route path="/login" element={<Login/>} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>

@@ -18,6 +18,11 @@ html {
   overflow: auto;
 }
 
+.loginButton {
+    align-items: right;
+    margin-left: 100px;
+}
+
 .background {
   position: absolute;
   top: 0;
@@ -50,15 +55,15 @@ table {
     margin-left: 25px;
     border-collapse: collapse;
     width: 60%;
-  }
+}
 
-  th {
-    text-align: left;
-
-  }
+th {
+    text-align: center;
+}
 
 td {
-    text-align: left;
-    padding: 8px;
-  }
+    text-align: center;
+}
+
+
 
