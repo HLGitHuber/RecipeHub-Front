@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import '../css/Search.css';
 import { Helmet } from 'react-helmet';
 import SearchIcon from '@mui/icons-material/Search';
-import apisettings from '../config/apisettings.dev.json'
+import apiSettings from '../config/apisettings.js'
 
 const Search = () => {
   const [productList, setProductList] = useState([]);
@@ -54,7 +54,7 @@ const Search = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch(apisettings.apiUrl); // Replace with the actual API endpoint for fetching products
+        const response = await fetch(apiSettings.apiUrl); // Replace with the actual API endpoint for fetching products
         const data = await response.json();
         const updatedProductList = data.map((item) => ({
           id: item.id,
@@ -91,7 +91,7 @@ const Search = () => {
             <div className='scrollable-content'>
               <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
             </div>
-            <div class="button-wrapper">
+            <div className="button-wrapper">
               <Button
                 variant="contained"
                 startIcon={<SearchIcon />}
