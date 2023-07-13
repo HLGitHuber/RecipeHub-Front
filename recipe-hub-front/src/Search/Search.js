@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import '../css/Search.css';
 import { Helmet } from 'react-helmet';
 import SearchIcon from '@mui/icons-material/Search';
+import apisettings from '../config/apisettings.dev.json'
 
 const Search = () => {
   const [productList, setProductList] = useState([]);
@@ -53,7 +54,7 @@ const Search = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch('https://localhost:44395/FoodData'); // Replace with the actual API endpoint for fetching products
+        const response = await fetch(apisettings.apiUrl); // Replace with the actual API endpoint for fetching products
         const data = await response.json();
         const updatedProductList = data.map((item) => ({
           id: item.id,
