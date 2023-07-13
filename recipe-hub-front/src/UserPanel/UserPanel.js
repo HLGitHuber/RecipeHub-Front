@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { FavouriteRecipe } from './FavouriteRecipe';
+import settings from '../appsettings.json'
 
 function UserPanel(){
     const favrecipes =[
@@ -7,13 +8,14 @@ function UserPanel(){
         {name: "Spaghetti Bolognese", cooktime :30},
         {name: "Chicken with rice", cooktime :20},
     ]
-
+    
 
    const [data, setData] = useState([])
    useEffect(()=>{
     async function fetchData(){
         try{
-            const response = await fetch('https://localhost:7264/api/User/id?id=1')
+            var loggedUserID=1;  
+            const response = await fetch(settings.UserDataAPI+loggedUserID)
             const json = await response.json();
             setData(json);
         } catch (error){
@@ -35,7 +37,7 @@ function UserPanel(){
 </tr>
 {favrecipes.map((recipe, key)=>{
     return(
-        <FavouriteRecipe name={recipe.name} cooktime={recipe.cooktime}/>
+        <FavouriteRecipe index={key} name={recipe.name} cooktime={recipe.cooktime}/>
     )
 })}
 </div>
