@@ -15,7 +15,7 @@ const RouterReact = () => {
             <Route path="/" element={<Homepage />} />
             <Route path="/search" element={<Search />} />
             <Route path="/recipes" element={<RecipesList/>} />
-            <Route path="/recipe" element={<RecipePage/>} />
+            <Route path="/recipe/:id" element={<RecipePage/>} />
             <Route path="/userpanel" element={<UserPanel/>} />
             <Route path="*" element={<NotFound />} />
         </Routes>

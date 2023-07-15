@@ -31,10 +31,9 @@ function RecipesList() {
       const recipe = recipes[index]
 
       return (
-        <div key={index} className='text'>
-            <tr><td>{recipe.name}</td><td>{recipe.time}</td><td><Link to={"/recipe"} state={recipe}><Button variant="contained" 
-            color="warning">Show recipe</Button></Link></td></tr>
-        </div>
+        // <tr key={index}><td>{recipe.name}</td><td>{recipe.time}</td><td><Link to={"/recipe"} state={recipe}><Button variant="contained" 
+        <tr key={index}><td>{recipe.name}</td><td>{recipe.time}</td><td><Link to={`/recipe/${recipe.id}`} state={recipe}><Button variant="contained" 
+        color="warning">Show recipe</Button></Link></td></tr>
       )
   }
 
