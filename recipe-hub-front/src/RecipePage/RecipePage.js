@@ -10,7 +10,7 @@ const RecipePage = () => {
   const location = useLocation();
   let {id} = useParams();
   const { state } = location;
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
