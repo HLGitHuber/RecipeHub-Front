@@ -35,10 +35,9 @@ html {
   background-position: center;
 }
 
-.heading {
-    margin: 20px;
+/* .heading {
 
-}
+} */
 
 .text {
     margin-left: 25px;
@@ -62,8 +61,13 @@ th {
 }
 
 td {
+    align-items: center;
     text-align: center;
 }
 
 
-
+.loginButton {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px
+}
