@@ -31,17 +31,18 @@ html {
 }
 
 .heading {
-    margin: 20px;
+  width:60%;
+  margin: 20px;
 
 }
 
 .text {
-    margin-left: 25px;
-    width:60%;
+  margin-left: 25px;
+  width:60%;
 }
 
 .line {
-    display: inline-block;
+  display: inline-block;
 }
 
 
@@ -62,3 +63,17 @@ td {
     padding: 8px;
   }
 
+h2 {
+  text-align: center;
+}
+
+.recipeName {
+  display: flex;
+  margin: auto;
+  width: 50%;
+}
+
+.idFromLink {
+  text-align: center;
+  margin: 4%;
+}

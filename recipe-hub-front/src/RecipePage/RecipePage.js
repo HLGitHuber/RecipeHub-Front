@@ -24,8 +24,9 @@ const RecipePage = () => {
   const DisplayRecipe = () => {
     return (
       <div>
-        <p>{id}</p>
-        <div>
+        <h2>Recipe page</h2>
+        <p className='idFromLink'>Id from link: {id}</p>
+        <div className='recipeName'>
           <Checkbox onChange={handleChange}
             inputProps={{ 'aria-label': 'controlled' }} 
             icon={<FavoriteBorder />} 
@@ -41,8 +42,9 @@ const RecipePage = () => {
   // const DisplayRecipe = () => {
   //   return (
   //     <div>
-  //       <h2 className='heading'>{state.name}</h2> 
-  //       <div>
+
+  //       <div className='recipeName'>
+  //         <h2 className='heading'>{state.name}</h2> 
   //         <Checkbox onChange={handleChange}
   //           inputProps={{ 'aria-label': 'controlled' }} 
   //           icon={<FavoriteBorder />} 
@@ -59,6 +61,7 @@ const RecipePage = () => {
   return (
   <div className='background'>
       <div className='container'>
+
         {DisplayRecipe()}
       </div>
   </div>
