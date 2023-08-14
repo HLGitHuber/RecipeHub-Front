@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NotFound from './NotFound';
-import Homepage from './Homepage';
-import Search from '../Search/Search';
-import RecipePage from '../RecipePage/RecipePage';
-import RecipesList from '../RecipesList/RecipesList';
-import Login from '../Login/Login';
-import UserPanel from '../UserPanel/UserPanel';
+import NotFound from '../pages/NotFound';
+import Homepage from '../pages/Homepage';
+import Search from '../pages/Search';
+import RecipePage from '../pages/RecipePage';
+import RecipesList from '../pages/RecipesList';
+import Login from '../pages/Login';
+import UserPanel from '../pages/UserPanel';
 
 
 const RouterReact = () => {

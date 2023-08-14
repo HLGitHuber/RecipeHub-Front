@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import SearchBar from './Searchbar';
-import ProductList from './ProductList';
+import SearchBar from '../components/Searchbar';
+import ProductList from '../components/ProductList';
 import { Button } from '@mui/material';
 import '../css/Search.css';
 import { Helmet } from 'react-helmet';

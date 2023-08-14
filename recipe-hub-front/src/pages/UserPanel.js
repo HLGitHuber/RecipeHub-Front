@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { FavouriteRecipe } from './FavouriteRecipe';
+import { FavouriteRecipe } from '../components/FavouriteRecipe';
 import settings from '../appsettings.json'
 
 function UserPanel(){
