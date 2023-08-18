@@ -31,6 +31,10 @@ const LoginModal = ({ isOpen, onClose }) => {
                     bgcolor: 'bisque',
                     boxShadow: 24,
                     p: 4,
+                    borderRadius: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1px',
                     }}
                 ><TextField label="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
                 <TextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
