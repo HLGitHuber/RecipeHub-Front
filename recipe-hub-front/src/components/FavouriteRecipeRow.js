@@ -1,12 +1,13 @@
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 
-export const FavouriteRecipeRow = (recipe)=>{
+export const FavouriteRecipeRow = ({recipe}) => {
     return(
         <tr>
             <td>{recipe.name}</td>
             <td>{recipe.cooktime}</td>
-            <td><Button color="warning" variant='contained'>See Details</Button></td>
-            <td><Button color="warning" variant='contained'>Remove from favs</Button></td>
+            <td><Link to={`/recipe/${recipe.id}`}><Button color="warning" variant='contained'>See Details</Button></Link></td>
+            {/* here perform action of removing from favs */}
+            <td><Button color="warning" variant='contained' onClick={() => alert(recipe.name + " removed from favs")}>Remove from favs</Button></td> 
         </tr>
     )
 }

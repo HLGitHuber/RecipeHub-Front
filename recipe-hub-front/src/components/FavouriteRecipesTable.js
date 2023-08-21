@@ -6,7 +6,7 @@ export const FavouriteRecipeTable = ({rows})=>{
             <thead>
                 <tr>
                     <th><h5>Favourite recipes:</h5></th>
-                    <th><h5>Cooking time</h5></th>
+                    <th><h5>Cooking time (in minutes)</h5></th>
                 </tr>
             </thead>
             <tbody>
