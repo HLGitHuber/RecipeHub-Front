@@ -24,6 +24,19 @@ const RegistrationForm = () => {
     }));
   };
 
+  const passwordCheck = (givenPassword) => {
+      const hasUpperCase = /[A-Z]/.test(givenPassword);
+      const hasLowerCase = /[a-z]/.test(givenPassword);
+      const hasNumber = /[0-9]/.test(givenPassword);
+      const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(givenPassword);
+      const isLengthValid = givenPassword.length >= 8;
+  
+      const isPasswordValid =
+        hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && isLengthValid;
+  
+      return isPasswordValid;
+  }
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,6 +49,9 @@ const RegistrationForm = () => {
     }
     if (!formData.password) {
       newErrors.password = 'Password is required.';
+    }
+    if (!passwordCheck(formData.password)) {
+      newErrors.password = 'Password has to have 8 characters including small and big letters, number and special character';
     }
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Confirm Password is required.';
