@@ -1,4 +1,5 @@
 {
-    "apiUrl": "https://localhost:44395/FoodData"
+    "apiUrlIngredients": "https://localhost:7128/api/ingredients",
+    "apiUrlRecipe":  "https://localhost:7128/api/recipe/"
   }
   

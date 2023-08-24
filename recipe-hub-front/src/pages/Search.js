@@ -54,7 +54,7 @@ const Search = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch(apiSettings.apiUrl); // Replace with the actual API endpoint for fetching products
+        const response = await fetch(apiSettings.apiUrlIngredients);
         const data = await response.json();
         const updatedProductList = data.map((item) => ({
           id: item.id,
