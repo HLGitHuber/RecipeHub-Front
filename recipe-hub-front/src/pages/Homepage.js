@@ -4,17 +4,26 @@ import CookieIcon from '@mui/icons-material/Cookie';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import { orange } from "@mui/material/colors";
 import { Button } from '@mui/material';
+import React, { useState } from 'react';
+import Modal from '../components/LoginModal';
 
+const Homepage = () => {
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-function Homepage() {
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className='background'>
       <div className='container'>
         <div className="loginButton">        
-          <Link to={'/login'}>
-            <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}}>Login</Button>
-          </Link>
+            <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}} onClick={openModal}>Login</Button>
         </div>
 
 
@@ -39,7 +48,7 @@ function Homepage() {
               </td>
             </tr>
         </table>
-
+        <Modal isOpen={isModalOpen} onClose={closeModal} />
       </div>
   </div>
   );
