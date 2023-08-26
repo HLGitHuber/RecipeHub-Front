@@ -54,10 +54,12 @@ const RecipePage = () => {
             checkedIcon={<Favorite />} />
         </div>
         <p className='text'>Time to prepare (in minutes): {recipe.preparationTimeMin}-{recipe.preparationTimeMax}</p>
-        <p className='text'>Ingredients list:</p>
-        <p className='text'>{recipe.ingredients}</p>
+        {/* <p className='text'>Ingredients list:</p>
+        <p className='text'>{recipe.ingredients}</p> */}
         <p className='text'>Description:</p>
         <p className='text'>{recipe.recipeText}</p>
+        <p className='text'>Calories:</p>
+        <p className='text'>{recipe.calories}</p>
       </div>
     )
   }
