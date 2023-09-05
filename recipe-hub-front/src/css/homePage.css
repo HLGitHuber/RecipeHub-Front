@@ -1,91 +1,118 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  color:bisque;
+.main {
+  display: flex;
+  flex-wrap: wrap;
 }
 
+.coolHeader h1 {
+    font-size: 60px;
+    font-weight: 500;
+    color: bisque;
+    
+    /* white-space: nowrap;
+    overflow: hidden; */
+  }
 
-
-.container {
-    margin-left: 0;
-    padding-left: 0;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-.loginButton {
-    align-items: right;
-    margin-left: 100px;
-}
-
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../images/basicPage.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-/* .heading {
-
-} */
-
-.text {
-    margin-left: 25px;
-    width:60%;
-}
-
-.line {
-    display: inline-block;
-}
-
-
-
-table {
-    margin-left: 25px;
-    border-collapse: collapse;
-    width: 60%;
-}
-
-th {
-    text-align: center;
-}
-
-td {
-    align-items: center;
-    text-align: center;
-}
-
-
-.loginButton {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px
-}
-
-
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+.coolHeader {
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: center;
+    margin: 0;
   }
-  
-  .modal-content {
-    padding: 20px;
+
+  .myProducts {
+    /* overflow: auto;
+    display: flex;
+    flex-direction: column; */
+    position: relative;
   }
-  
+
+  /* .myProducts > .scrollable-content {
+    flex-grow: 1;
+    overflow: auto;
+  } */
+  .scrollable-content {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .button-wrapper {
+    position: sticky;
+    bottom: 0;
+  }
+
+  .myProducts h2 {
+    margin-bottom: 0%;
+    color: bisque;
+  }
+
+  .left-element {
+    flex: 1;
+    /* Styles for the left element */
+  }
+
+.right-element {
+    background-image: url("../images/basicPagePicture.JPG");
+    flex: 0 0 40%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.smallHeaders {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.loginButton {
+  position: absolute;
+  top: 12px; 
+  right: 12px;
+}
+
+@media (max-width: 1327px) {
+  .coolHeader h1 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 1127px) {
+  .coolHeader h1 {
+    font-size: 40px;
+  }
+}
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .right-element {
+    display: none; /* Hide the right element on small screens */
+  }
+  .coolHeader h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 532px) {
+  .coolHeader h1 {
+    font-size: 26px;
+  }
+  form.MuiPaper-root {
+    width: 100%;
+  }
+  .myProducts Button {
+    font-size: 50%;
+  }
+}
+@media (max-width: 372px) {
+  .myProducts h2 {
+    font-size: 1.3em;
+  }
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

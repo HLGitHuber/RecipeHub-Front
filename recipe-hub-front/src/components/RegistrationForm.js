@@ -51,7 +51,7 @@ const RegistrationForm = () => {
       newErrors.password = 'Password is required.';
     }
     if (!passwordCheck(formData.password)) {
-      newErrors.password = 'Password has to have 8 characters including small and big letters, number and special character';
+      newErrors.password = 'Password has to have 8 characters including small and big letters, number and special character.';
     }
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Confirm Password is required.';
@@ -73,44 +73,49 @@ const RegistrationForm = () => {
       <h2 className="registration-title">Registration Form</h2>
       <form className="registration-form" onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
+        <span className="error">{errors.name}</span>
           <input
+            className='input'
             type="text"
             name="name"
+            placeholder="Username"
+            sx={{ backgroundColor: 'bisque', ml: 1, flex: 1 }}
             value={formData.name}
             onChange={handleChange}
           />
-          <span className="error">{errors.name}</span>
         </div>
         <div>
-          <label>Email:</label>
+        <span className="error">{errors.email}</span>
           <input
+            className='input'
             type="email"
             name="email"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
           />
-          <span className="error">{errors.email}</span>
         </div>
         <div>
-          <label>Password:</label>
+        <span className="error">{errors.password}</span>
           <input
+            className='input'
             type="password"
             name="password"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
           />
-          <span className="error">{errors.password}</span>
         </div>
         <div>
-          <label>Confirm Password:</label>
+        <span className="error">{errors.confirmPassword}</span>
           <input
+            className='input'
             type="password"
             name="confirmPassword"
+            placeholder="Confirm password"
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-          <span className="error">{errors.confirmPassword}</span>
         </div>
         <button type="submit">Register</button>
       </form>

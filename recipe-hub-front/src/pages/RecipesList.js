@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useParams }  from 'react'
 import Button from '@mui/material/Button';
-import '../css/basicPage.css';
+import { Link } from 'react-router-dom';
+import "../css/basicPage.css"
 import apiSettings from '../config/apisettings.js'
+
 
 function RecipesList() {
   const location = useLocation();
@@ -51,6 +52,7 @@ function RecipesList() {
       </tr>
     );
   };
+
 
   const displayAllRecipes = () => {
     if (!recipes || recipes.length === 0 ) {
