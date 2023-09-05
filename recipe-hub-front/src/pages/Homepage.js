@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
-import "../css/homePage.css";
-import CookieIcon from '@mui/icons-material/Cookie';
-import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
-import { orange } from "@mui/material/colors";
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import SearchBar from '../components/Searchbar';
+import ProductList from '../components/ProductList';
 import { Button } from '@mui/material';
-import React, { useState } from 'react';
+import '../css/homePage.css';
+import { Helmet } from 'react-helmet';
+import { orange } from "@mui/material/colors";
+import SearchIcon from '@mui/icons-material/Search';
+import apiSettings from '../config/apisettings.js';
 import Modal from '../components/LoginModal';
+
 
 const Homepage = () => {
 
@@ -19,47 +23,114 @@ const Homepage = () => {
     setIsModalOpen(false);
   };
 
+  const [productList, setProductList] = useState([]);
+
+  const [chosenProductsList, setChosenProductsList] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleNavigateButtonClick = (products) => {
+    navigate(`/recipes`, { state: { selectedProducts: products } });
+  };
+
+  const toggleSelection = (itemId) => {
+    const selectedItem = productList.find((item) => item.id === itemId);
+    if (selectedItem) {
+      setProductList((prevProductList) =>
+        prevProductList.filter((item) => item.id !== itemId)
+      );
+      setChosenProductsList((prevChosenProductsList) => [
+        ...prevChosenProductsList,
+        selectedItem,
+      ]);
+    } else {
+      const selectedItem = chosenProductsList.find((item) => item.id === itemId);
+      setChosenProductsList((prevChosenProductsList) =>
+        prevChosenProductsList.filter((item) => item.id !== itemId)
+      );
+      setProductList((prevProductList) => [...prevProductList, selectedItem]);
+    }
+  };
+
+  const doSearchLimit10 = (term, query) => {
+
+    if (!productList) return []
+
+    return productList.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    ).slice(0, 10)
+  };
+
+  const query = new URLSearchParams(useLocation().search).get('q');
+  const [searchQuery, setSearchQuery] = useState(query || '');
+  const returned = doSearchLimit10(searchQuery, searchQuery);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch(apiSettings.apiUrlIngredients);
+        const data = await response.json();
+        const updatedProductList = data.map((item) => ({
+          id: item.id,
+          name: item.name, 
+        }));
+        setProductList(updatedProductList);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+
   return (
-    <div className='background'>
-      <div className='container'>
+    <div className='main'>
         <div className="loginButton">        
-            <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}} onClick={openModal}>Login</Button>
+          <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}} onClick={openModal}>Login</Button>
         </div>
+      <Helmet>
+        <style>
+            {'body { background-color: #8f8f24; }'}
+        </style>
+      </Helmet>
 
-
-        <h1 className="heading">Homepage</h1>
-        <h3 className="text">With us you're gonna find your dream meal</h3>
-
-        <div className='line'>
-          <h4>Search for your meal</h4>
-          <Link to={'/search'}>
-                    <DinnerDiningIcon sx={{ color: orange[500], fontSize: 80}}></DinnerDiningIcon>
-          </Link>
+      <div className='left-element' >
+        <div className='coolHeader'>
+          <h1>RecipeHub</h1>
         </div>
+        <h2 className='smallHeaders'>With us you're gonna find your dream meal</h2>
+        <h3 className='smallHeaders'>Provide ingredients you have and search for your meal</h3>
 
-
-        <table>
-            <tr>
-              <td>Snack - less than 250 kcal</td>
-              <td>Normal meal - more than 250 kcal</td>
-            </tr>
-            <tr>
-              <td>
-                <Link to={'/search'}>
-                  <CookieIcon sx={{ color: orange[500], fontSize: 80}}></CookieIcon>
-                </Link>
-              </td>
-              <td>
-                <Link to={'/search'}>
-                  <DinnerDiningIcon sx={{ color: orange[500], fontSize: 80}}></DinnerDiningIcon>
-                </Link>
-              </td>
-            </tr>
-        </table>
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <div style={{ display: 'flex' }}>
+          <div className='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
+            <ProductList items={returned} onItemClick={toggleSelection} icon='add'/>
+          </div>
+          <div className='myProducts' style={{ flex: 1, maxWidth: '50%', maxHeight: '560px'  }}>
+            <h2>Your ingredients</h2>
+            <div className='scrollable-content'>
+              <ProductList items={chosenProductsList} onItemClick={toggleSelection} icon='remove' />
+            </div>
+            <div className="button-wrapper">
+              <Button
+                variant="contained"
+                startIcon={<SearchIcon />}
+                style={{ backgroundColor: 'bisque', color: 'black', fontSize: '100%' }}
+                onClick={() => handleNavigateButtonClick(chosenProductsList)}
+                >
+                Suggest meal for me
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
+
+      <div className='right-element' />
+    </div>
+
   );
-}
+  };
 
 export default Homepage;
