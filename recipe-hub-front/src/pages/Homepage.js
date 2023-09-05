@@ -28,7 +28,15 @@ const Homepage = () => {
 
 
         <h1 className="heading">Homepage</h1>
-        <h3 className="text">With us you're gonna find your dream meal Choose meal type</h3>
+        <h3 className="text">With us you're gonna find your dream meal</h3>
+
+        <div className='line'>
+          <h4>Search for your meal</h4>
+          <Link to={'/search'}>
+                    <DinnerDiningIcon sx={{ color: orange[500], fontSize: 80}}></DinnerDiningIcon>
+          </Link>
+        </div>
+
 
         <table>
             <tr>

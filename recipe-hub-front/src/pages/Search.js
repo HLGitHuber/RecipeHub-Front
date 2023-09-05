@@ -79,8 +79,11 @@ const Search = () => {
     </Helmet>
       <div className='left-element' >
         <div className='coolHeader'>
-          <h1>Provide ingredients you have</h1>
+          <h1>RecipeHub</h1>
         </div>
+        <h2>With us you're gonna find your dream meal</h2>
+        <h3>Provide ingredients you have and search for your meal</h3>
+
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div style={{ display: 'flex' }}>
           <div className='searchProducts' style={{ flex: 1, height: '100%', maxWidth: '50%' }}>
