@@ -10,6 +10,7 @@
   .registration-title {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 35px;
   }
   
   .registration-form {
@@ -17,8 +18,12 @@
     flex-direction: column;
   }
   
-  .registration-form > div {
+  .registration-form > div{
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .registration-form label {
@@ -59,3 +64,7 @@
     background-color: #0056b3;
   }
   
+  .input { 
+    max-width: 230px;
+    width: 100%;
+  }
