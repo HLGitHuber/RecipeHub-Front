@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useParams }  from 'react'
+import React, { useState, useEffect, useLocation }  from 'react'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import "../css/basicPage.css"
