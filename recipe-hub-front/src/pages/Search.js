@@ -5,10 +5,23 @@ import ProductList from '../components/ProductList';
 import { Button } from '@mui/material';
 import '../css/Search.css';
 import { Helmet } from 'react-helmet';
+import { orange } from "@mui/material/colors";
 import SearchIcon from '@mui/icons-material/Search';
-import apiSettings from '../config/apisettings.js'
+import apiSettings from '../config/apisettings.js';
+import Modal from '../components/LoginModal';
+
 
 const Search = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [productList, setProductList] = useState([]);
 
   const [chosenProductsList, setChosenProductsList] = useState([]);
@@ -72,11 +85,15 @@ const Search = () => {
 
   return (
     <div className='main'>
-    <Helmet>
-    <style>
-        {'body { background-color: #8f8f24; }'}
-    </style>
-    </Helmet>
+        <div className="loginButton">        
+          <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}} onClick={openModal}>Login</Button>
+        </div>
+      <Helmet>
+        <style>
+            {'body { background-color: #8f8f24; }'}
+        </style>
+      </Helmet>
+
       <div className='left-element' >
         <div className='coolHeader'>
           <h1>RecipeHub</h1>
@@ -107,6 +124,8 @@ const Search = () => {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
+
       <div className='right-element' />
     </div>
 
