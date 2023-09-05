@@ -81,8 +81,8 @@ const Search = () => {
         <div className='coolHeader'>
           <h1>RecipeHub</h1>
         </div>
-        <h2>With us you're gonna find your dream meal</h2>
-        <h3>Provide ingredients you have and search for your meal</h3>
+        <h2 className='smallHeaders'>With us you're gonna find your dream meal</h2>
+        <h3 className='smallHeaders'>Provide ingredients you have and search for your meal</h3>
 
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div style={{ display: 'flex' }}>
