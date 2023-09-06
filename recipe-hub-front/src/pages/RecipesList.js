@@ -40,18 +40,28 @@ function RecipesList() {
 
   const filterRecipes = () => {
     return recipes.filter((recipe) => {
-      const prepTime = recipe.preparationTimeMin; 
+      const prepTime = recipe.preparationTimeMin;
       const calories = recipe.calories;
 
+      let prepTimeFilter = true;
       if (selectedPreparationTime === "<20") {
-        return prepTime < 20;
+        prepTimeFilter = prepTime < 20;
       } else if (selectedPreparationTime === "20-40") {
-        return prepTime >= 20 && prepTime <= 40;
+        prepTimeFilter = prepTime >= 20 && prepTime <= 40;
       } else if (selectedPreparationTime === ">40") {
-        return prepTime > 40;
+        prepTimeFilter = prepTime > 40;
       }
 
-      return true; 
+      let calorieFilter = true;
+      if (selectedCalories === "<100") {
+        calorieFilter = calories < 100;
+      } else if (selectedCalories === "100-300") {
+        calorieFilter = calories >= 100 && calories <= 300;
+      } else if (selectedCalories === ">300") {
+        calorieFilter = calories > 300;
+      }
+
+      return prepTimeFilter && calorieFilter;
     });
   };
 
@@ -121,9 +131,9 @@ function RecipesList() {
             onChange={(e) => setSelectedCalories(e.target.value)}
           >
             <option value="">Select</option>
-            <option value="<100">&lt;100</option>
-            <option value="100-300">100-300</option>
-            <option value=">300">&gt;300</option>
+            <option value="<100">&lt;200</option>
+            <option value="100-300">200-400</option>
+            <option value=">300">&gt;400</option>
           </select>
         </div>
 
