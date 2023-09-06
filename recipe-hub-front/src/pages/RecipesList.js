@@ -53,12 +53,12 @@ function RecipesList() {
       }
 
       let calorieFilter = true;
-      if (selectedCalories === "<100") {
-        calorieFilter = calories < 100;
-      } else if (selectedCalories === "100-300") {
-        calorieFilter = calories >= 100 && calories <= 300;
-      } else if (selectedCalories === ">300") {
-        calorieFilter = calories > 300;
+      if (selectedCalories === "<200") {
+        calorieFilter = calories < 200;
+      } else if (selectedCalories === "200-400") {
+        calorieFilter = calories >= 200 && calories <= 400;
+      } else if (selectedCalories === ">400") {
+        calorieFilter = calories > 400;
       }
 
       return prepTimeFilter && calorieFilter;
