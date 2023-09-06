@@ -36,6 +36,20 @@ html {
 
 }
 
+.home-icon {
+  font-size: 48px;
+  margin-right: 10px; 
+  vertical-align: middle;
+}
+
+/* Style for the header */
+.header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 20px; 
+}
+
 .text {
   margin-left: 25px;
   width:60%;

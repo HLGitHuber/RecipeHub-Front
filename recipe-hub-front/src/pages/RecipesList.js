@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import "../css/basicPage.css";
 import apiSettings from '../config/apisettings.js';
+import HomeIcon from '@mui/icons-material/Home'; 
 
 function RecipesList() {
   const location = useLocation();
@@ -112,7 +113,12 @@ function RecipesList() {
   return (
     <div className='background'>
       <div className='container'>
-        <h2 className='heading'>Recipes we've found for you</h2>
+        <div className='header'>
+            <h2 className='heading'>Recipes we've found for you</h2>
+            <Link to="/">
+              <HomeIcon className="home-icon" style={{ fontSize: 60, color: 'orange' }}/>
+            </Link>
+        </div>
         <div className="filters">
           <label>Preparation Time:</label>
           <select
