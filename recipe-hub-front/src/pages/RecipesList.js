@@ -17,7 +17,7 @@ function RecipesList() {
 
   useEffect(() => {
     if (!selectedProducts || selectedProducts.length === 0) {
-      setIsLoading(true);
+      setIsLoading(false);
       return;
     }
 
@@ -82,7 +82,21 @@ function RecipesList() {
       return <p>No recipes found. It's possible that you didn't choose any ingredients.</p>;
     }
 
-    return recipeList.map((recipe) => DisplayRecipe(recipe));
+    return (
+    <table>
+      <thead>
+        <tr>
+          <th>Recipe name</th>
+          <th>Preparation time</th>
+          <th>Calories</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {recipeList.map((recipe) => DisplayRecipe(recipe))}
+      </tbody>
+    </table>
+    )
   };
 
   return (
@@ -116,17 +130,7 @@ function RecipesList() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Recipe name</th>
-                <th>Preparation time</th>
-                <th>Calories</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>{displayAllRecipes(filteredRecipes)}</tbody>
-          </table>
+          displayAllRecipes(filteredRecipes)
         )}
       </div>
     </div>
