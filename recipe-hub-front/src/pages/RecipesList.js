@@ -139,9 +139,9 @@ function RecipesList() {
             onChange={(e) => setSelectedCalories(e.target.value)}
           >
             <option value="">Select</option>
-            <option value="<100">&lt;200</option>
-            <option value="100-300">200-400</option>
-            <option value=">300">&gt;400</option>
+            <option value="<200">&lt;200</option>
+            <option value="200-400">200-400</option>
+            <option value=">400">&gt;400</option>
           </select>
         </div>
 
