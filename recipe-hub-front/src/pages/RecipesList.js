@@ -30,6 +30,7 @@ function RecipesList() {
         const response = await fetch(apiUrl);
         const data = await response.json();
         setRecipes(data);
+        setFilteredRecipes(data);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching recipes:', error);
@@ -37,10 +38,10 @@ function RecipesList() {
     }
 
     fetchRecipes();
-  }, [selectedProducts]);
+  }, []);
 
   const filterRecipes = () => {
-    return recipes.filter((recipe) => {
+    const updatedFilteredRecipes = recipes.filter((recipe) => {
       const prepTime = recipe.preparationTimeMin;
       const calories = recipe.calories;
 
@@ -64,12 +65,13 @@ function RecipesList() {
 
       return prepTimeFilter && calorieFilter;
     });
+
+    setFilteredRecipes(updatedFilteredRecipes);
   };
 
   useEffect(() => {
-    const filteredRecipes = filterRecipes();
-    setFilteredRecipes(filteredRecipes);
-  }, [selectedPreparationTime]);
+    filterRecipes();
+  }, [selectedPreparationTime, selectedCalories]);
 
   const DisplayRecipe = (recipe) => {
     return (
