@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import "../css/registrationForm.css"
+import axios from 'axios';
+import apiSettings from '../config/apisettings';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    UserName: '',
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
   });
 
   const [errors, setErrors] = useState({
-    name: '',
+    UserName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -41,28 +43,42 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     const newErrors = {};
-    if (!formData.name) {
+    if (!formData.UserName) {
       newErrors.name = 'Name is required.';
     }
-    if (!formData.email) {
+    if (!formData.Email) {
       newErrors.email = 'Email is required.';
     }
-    if (!formData.password) {
+    if (!formData.Password) {
       newErrors.password = 'Password is required.';
     }
-    if (!passwordCheck(formData.password)) {
+    if (!passwordCheck(formData.Password)) {
       newErrors.password = 'Password has to have 8 characters including small and big letters, number and special character.';
     }
-    if (!formData.confirmPassword) {
+    if (!formData.ConfirmPassword) {
       newErrors.confirmPassword = 'Confirm Password is required.';
     }
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.Password !== formData.ConfirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match.';
     }
 
     if (Object.keys(newErrors).length === 0) {
       // Submit the form or perform any further actions here
-      console.log('Form submitted:', formData);
+      axios({
+        method: 'options',
+        url: apiSettings.apiUrlUserRegister,
+        data: formData,
+        headers: {
+          'Content-Type': 'application/json-patch+json',
+        }
+      })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log('formData', formData);
+          console.log('Error', error);
+        })
     } else {
       setErrors(newErrors);
     }
@@ -73,47 +89,47 @@ const RegistrationForm = () => {
       <h2 className="registration-title">Registration Form</h2>
       <form className="registration-form" onSubmit={handleSubmit}>
         <div>
-        <span className="error">{errors.name}</span>
+        <span className="error">{errors.UserName}</span>
           <input
             className='input'
             type="text"
-            name="name"
+            name="UserName"
             placeholder="Username"
             sx={{ backgroundColor: 'bisque', ml: 1, flex: 1 }}
-            value={formData.name}
+            value={formData.UserName}
             onChange={handleChange}
           />
         </div>
         <div>
-        <span className="error">{errors.email}</span>
+        <span className="error">{errors.Email}</span>
           <input
             className='input'
             type="email"
-            name="email"
+            name="Email"
             placeholder="Email"
-            value={formData.email}
+            value={formData.Email}
             onChange={handleChange}
           />
         </div>
         <div>
-        <span className="error">{errors.password}</span>
+        <span className="error">{errors.Password}</span>
           <input
             className='input'
             type="password"
-            name="password"
+            name="Password"
             placeholder="Password"
-            value={formData.password}
+            value={formData.Password}
             onChange={handleChange}
           />
         </div>
         <div>
-        <span className="error">{errors.confirmPassword}</span>
+        <span className="error">{errors.ConfirmPassword}</span>
           <input
             className='input'
             type="password"
-            name="confirmPassword"
+            name="ConfirmPassword"
             placeholder="Confirm password"
-            value={formData.confirmPassword}
+            value={formData.ConfirmPassword}
             onChange={handleChange}
           />
         </div>
