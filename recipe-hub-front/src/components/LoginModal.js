@@ -48,7 +48,6 @@ const LoginModal = ({ isOpen, onClose }) => {
                 
                 </Box>
             </Modal>
-            <button onClick={onClose}>Close Modal</button>
         </div>
     </div>
 
