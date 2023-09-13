@@ -3,6 +3,10 @@
   flex-wrap: wrap;
 }
 
+.MuiBox-root p {
+  color: red;
+}
+
 .coolHeader h1 {
     font-size: 60px;
     font-weight: 500;
