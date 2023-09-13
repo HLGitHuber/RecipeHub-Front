@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import "../css/registrationForm.css"
 import axios from 'axios';
 import apiSettings from '../config/apisettings';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     UserName: '',
     Email: '',
@@ -63,7 +66,6 @@ const RegistrationForm = () => {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      // Submit the form or perform any further actions here
       axios({
         method: 'options',
         url: apiSettings.apiUrlUserRegister,
@@ -73,7 +75,7 @@ const RegistrationForm = () => {
         }
       })
         .then(response => {
-          console.log(response);
+          navigate('/')
         })
         .catch(error => {
           console.log('formData', formData);
