@@ -1,19 +1,44 @@
 import { Button, Modal, Box, TextField, Link } from '@mui/material';
 import { useState } from 'react';
+import axios from 'axios';
+import apiSettings from '../config/apisettings';
 
 const LoginModal = ({ isOpen, onClose }) => {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Perform data validation and login logic here
-    if (username === 'admin' && password === 'password') {
-      // Login successful
-      console.log('Logged in');
-    } else {
-      // Login failed
-      console.log('Invalid credentials');
-    }
+  const [error, setError] = useState(null);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    axios({
+      method: 'options',
+      url: apiSettings.apiUrlUserLogin,
+      data: {
+        'userName': username,
+        'password': password,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      onClose();
+    })
+    .catch(error => {
+      if (error.response.status === 401 || error.response.status === 400){
+        console.log(error);
+        setError('Invalid Username or Password');
+      } else {
+        setError('An error occurred');
+      }
+    })
+
+    
   };
 
   if (!isOpen) return null;
@@ -36,7 +61,9 @@ const LoginModal = ({ isOpen, onClose }) => {
                     flexDirection: 'column',
                     gap: '1px',
                     }}
-                ><TextField label="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
+                >
+                { error && <p>{error}</p> }
+                <TextField label="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
                 <TextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
                 <Button variant="contained" color="primary" onClick={handleLogin}>
                     Login
