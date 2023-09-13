@@ -91,7 +91,7 @@ const Homepage = () => {
         </div>
       <Helmet>
         <style>
-            {'body { background-color: #8f8f24; }'}
+            {'body { background-color: #798726; }'}
         </style>
       </Helmet>
 
