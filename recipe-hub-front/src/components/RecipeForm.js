@@ -12,13 +12,15 @@ const RecipeForm = () => {
     preparationTimeMin: '',
     preparationTimeMax: '',
     calories: '',
+    recipeText: '',
   });
 
   const [errors, setErrors] = useState({
-    UserName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    recipeName: '',
+    empreparationTimeMinail: '',
+    preparationTimeMax: '',
+    calories: '',
+    recipeText: '',
   });
 
   const handleChange = (e) => {
@@ -48,6 +50,12 @@ const RecipeForm = () => {
     }
     if (!formData.calories) {
       newErrors.calories = 'Calories are required.';
+    }
+    if (!formData.recipeText) {
+      newErrors.recipeText = 'Recipe description is required.';
+    }
+    if (formData.recipeText.length<100) {
+      newErrors.recipeText = 'Recipe description has to consist of at least 100 signs.';
     }
 
 
@@ -116,9 +124,22 @@ const RecipeForm = () => {
             className='input'
             type="number"
             name="calories"
-            placeholder="calories password"
+            placeholder="calories"
             value={formData.calories}
             onChange={handleChange}
+          />
+        </div>
+        <div>
+        <span className="error">{errors.recipeText}</span>
+          <textarea
+            className='input'
+            type="text"
+            name="recipeText"
+            placeholder="recipe description"
+            value={formData.recipeText}
+            onChange={handleChange}
+            rows="7" 
+            cols="70"
           />
         </div>
         <button type="submit">next step</button>
