@@ -7,6 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 
 function UserPanel(){
+
     const favrecipes =[
         {name: "Meat lasagne", cooktime :35, id: 1},
         {name: "Spaghetti Bolognese", cooktime :30, id: 2},
@@ -46,7 +47,9 @@ function UserPanel(){
                 <div className='second-header-container'>
                     <h3 className='second-heading'>User name: {data.userName}</h3>
                     <h3 className='second-heading'>Name: {data.firstName} {data.lastName}</h3>
-                    <Button color="warning" variant='contained'>Add new recipe</Button>
+                    <Link to="/add-recipe">
+                        <Button color="warning" variant='contained'>Add new recipe</Button>
+                    </Link>
                 </div>
                 <div className="table-container">
                     <table>

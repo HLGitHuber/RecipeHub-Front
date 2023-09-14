@@ -142,7 +142,7 @@ const RecipeForm = () => {
             cols="70"
           />
         </div>
-        <button type="submit">next step</button>
+        <button type="submit" onClick={navigate("/add-ingredients")}>next step</button>
       </form>
     </div>
   );
