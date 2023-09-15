@@ -2,6 +2,7 @@
     "apiUrlIngredients": "https://localhost:7128/api/ingredients",
     "apiUrlRecipesList": "https://localhost:7128/api/recipe/by-ingredients/",
     "apiUrlRecipe":  "https://localhost:7128/api/Recipe/",
+    "apiUrlRecipeIngredient": "https://localhost:7128/api/recipeingredient",
     "apiUrlUserRegister": "https://localhost:7128/api/users/register",
     "apiUrlUserLogin": "https://localhost:7128/api/users/login",
     "apiUrlBase": "https://localhost:7128/api"

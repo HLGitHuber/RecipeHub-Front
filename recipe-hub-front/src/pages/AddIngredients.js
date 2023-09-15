@@ -1,20 +1,35 @@
 import "../css/basicPage.css";
 import ProductList from '../components/ProductList';
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import SearchBar from '../components/Searchbar';
+import axios from 'axios';
 import apiSettings from '../config/apisettings.js';
 import { Button } from '@mui/material';
 
 
 const AddIngredientsPage = () => {
+    let {recipeId} = useParams();
     const navigate = useNavigate();
     const [productList, setProductList] = useState([]);
     const [chosenProductsList, setChosenProductsList] = useState([]);
 
     const handleNavigateButtonClick = () => {
-        navigate(`/userPanel`);
-      };
+        chosenProductsList.forEach((product) => {
+          axios({
+            method: 'post',
+            url: apiSettings.apiUrlRecipeIngredient,
+            data: {
+              recipeId: recipeId,
+              IngredientId: product.id,
+            },
+            headers: {
+              'Content-Type': 'application/json-patch+json',
+            }
+          })
+        })
+      navigate(`/userPanel`);
+    };
 
   const toggleSelection = (itemId) => {
     const selectedItem = productList.find((item) => item.id === itemId);

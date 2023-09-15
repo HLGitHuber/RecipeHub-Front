@@ -61,15 +61,15 @@ const RecipeForm = () => {
 
     if (Object.keys(newErrors).length === 0) {
       axios({
-        method: 'options',
-        url: apiSettings.apiUrlUserRegister,
+        method: 'post',
+        url: apiSettings.apiUrlRecipe,
         data: formData,
         headers: {
           'Content-Type': 'application/json-patch+json',
         }
       })
         .then(response => {
-          navigate('/')
+          navigate('/add-ingredients') //trzeba dodac state z recipe id
         })
         .catch(error => {
           console.log('formData', formData);
@@ -142,7 +142,7 @@ const RecipeForm = () => {
             cols="70"
           />
         </div>
-        <button type="submit" onClick={navigate("/add-ingredients")}>next step</button>
+        <button type="submit">next step</button>
       </form>
     </div>
   );

@@ -21,7 +21,7 @@ const RouterReact = () => {
             <Route path='/registration' element={<RegistrationPage/>} />
             <Route path="/userpanel" element={<UserPanel/>} />
             <Route path="/add-recipe" element={<AddRecipePage/>}/>
-            <Route path="/add-ingredients" element={<AddIngredientsPage/>}/>
+            <Route path="/add-ingredients/:id" element={<AddIngredientsPage/>}/>
             <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
