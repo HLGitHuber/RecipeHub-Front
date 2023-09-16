@@ -72,7 +72,9 @@ const RecipeForm = () => {
         }
       })
         .then(response => {
-          navigate('/add-ingredients') //trzeba dodac state z recipe id
+          const newRecipeId = response.data.id;
+
+          navigate(`/add-ingredients/${newRecipeId}`) //trzeba dodac state z recipe id
         })
         .catch(error => {
           console.log('formData', formData);
