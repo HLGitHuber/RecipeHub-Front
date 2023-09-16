@@ -9,8 +9,8 @@ const RecipeForm = () => {
 
   const [formData, setFormData] = useState({
     recipeName: '',
-    preparationTimeMin: '',
-    preparationTimeMax: '',
+    preparationTimeMin: 0,
+    preparationTimeMax: 0,
     calories: '',
     recipeText: '',
   });
@@ -62,7 +62,7 @@ const RecipeForm = () => {
     if (Object.keys(newErrors).length === 0) {
       axios({
         method: 'post',
-        url: apiSettings.apiUrlRecipe,
+        url: apiSettings.apiUrlAddRecipe,
         data: formData,
         headers: {
           'Content-Type': 'application/json-patch+json',
