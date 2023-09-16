@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 
 
 const AddIngredientsPage = () => {
-    let {recipeId} = useParams();
+    let {id: recipeId} = useParams();
     const navigate = useNavigate();
     const [productList, setProductList] = useState([]);
     const [chosenProductsList, setChosenProductsList] = useState([]);
