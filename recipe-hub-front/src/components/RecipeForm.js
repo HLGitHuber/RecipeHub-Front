@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
 const RecipeForm = () => {
   const navigate = useNavigate();
 
+  const token = localStorage.getItem('token');
+
   const [formData, setFormData] = useState({
-    recipeName: '',
+    name: '',
     preparationTimeMin: 0,
     preparationTimeMax: 0,
     calories: '',
@@ -16,7 +18,7 @@ const RecipeForm = () => {
   });
 
   const [errors, setErrors] = useState({
-    recipeName: '',
+    name: '',
     empreparationTimeMinail: '',
     preparationTimeMax: '',
     calories: '',
@@ -36,7 +38,7 @@ const RecipeForm = () => {
     e.preventDefault();
 
     const newErrors = {};
-    if (!formData.recipeName) {
+    if (!formData.name) {
       newErrors.recipeName = 'Recipe name is required.';
     }
     if (!formData.preparationTimeMin) {
@@ -66,6 +68,7 @@ const RecipeForm = () => {
         data: formData,
         headers: {
           'Content-Type': 'application/json-patch+json',
+          'Authorization': `Bearer ${token}`,
         }
       })
         .then(response => {
@@ -85,14 +88,14 @@ const RecipeForm = () => {
       <h2 className="registration-title">Recipe Form</h2>
       <form className="registration-form" onSubmit={handleSubmit}>
         <div>
-        <span className="error">{errors.recipeName}</span>
+        <span className="error">{errors.name}</span>
           <input
             className='input'
             type="text"
-            name="recipeName"
-            placeholder="recipeName"
+            name="name"
+            placeholder="Recipe name"
             sx={{ backgroundColor: 'bisque', ml: 1, flex: 1 }}
-            value={formData.recipeName}
+            value={formData.name}
             onChange={handleChange}
           />
         </div>
