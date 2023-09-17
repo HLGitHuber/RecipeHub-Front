@@ -14,6 +14,8 @@ const AddIngredientsPage = () => {
     const [productList, setProductList] = useState([]);
     const [chosenProductsList, setChosenProductsList] = useState([]);
 
+    const token = localStorage.getItem('token');
+
     const handleNavigateButtonClick = () => {
         chosenProductsList.forEach((product) => {
           axios({
@@ -25,6 +27,7 @@ const AddIngredientsPage = () => {
             },
             headers: {
               'Content-Type': 'application/json-patch+json',
+              'Authorization': `Bearer ${token}`,
             }
           })
         })
