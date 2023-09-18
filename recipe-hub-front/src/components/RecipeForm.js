@@ -73,8 +73,9 @@ const RecipeForm = () => {
       })
         .then(response => {
           const newRecipeId = response.data.id;
+          const recipeOwner = response.data.userId;
 
-          navigate(`/add-ingredients/${newRecipeId}`)
+          navigate(`/add-ingredients/${newRecipeId}`, { state: { recipeOwner } });
         })
         .catch(error => {
           console.log('formData', formData);
