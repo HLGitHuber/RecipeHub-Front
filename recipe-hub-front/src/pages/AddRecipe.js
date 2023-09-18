@@ -3,7 +3,7 @@ import RecipeForm from "../components/RecipeForm";
 import LoginModal from "../components/LoginModal";
 import { Button } from '@mui/material';
 import { orange } from "@mui/material/colors";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from '../components/LoginModal';
 
 const AddRecipePage = () => {
