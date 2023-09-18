@@ -7,14 +7,35 @@ import axios from 'axios';
 import apiSettings from '../config/apisettings.js';
 import { Button } from '@mui/material';
 
-
 const AddIngredientsPage = () => {
     let {id: recipeId} = useParams();
     const navigate = useNavigate();
     const [productList, setProductList] = useState([]);
     const [chosenProductsList, setChosenProductsList] = useState([]);
-
+    const location = useLocation();
+    const { recipeOwner } = location.state || {};
     const token = localStorage.getItem('token');
+
+    useEffect(() => {
+      if(!recipeOwner || !token) {
+        navigate('/NotFound')
+        return
+      }
+      async function fetchProducts() {
+        try {
+          const response = await fetch(apiSettings.apiUrlIngredients);
+          const data = await response.json();
+          const updatedProductList = data.map((item) => ({
+            id: item.id,
+            name: item.name, 
+          }));
+          setProductList(updatedProductList);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+      fetchProducts();
+    }, [recipeOwner, navigate, token]);
 
     const handleNavigateButtonClick = () => {
         chosenProductsList.forEach((product) => {
@@ -65,23 +86,6 @@ const AddIngredientsPage = () => {
   const query = new URLSearchParams(useLocation().search).get('q');
   const [searchQuery, setSearchQuery] = useState(query || '');
   const returned = doSearchLimit10(searchQuery, searchQuery);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await fetch(apiSettings.apiUrlIngredients);
-        const data = await response.json();
-        const updatedProductList = data.map((item) => ({
-          id: item.id,
-          name: item.name, 
-        }));
-        setProductList(updatedProductList);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    }
-    fetchProducts();
-  }, []);
 
     return(
         <div className='background'>
