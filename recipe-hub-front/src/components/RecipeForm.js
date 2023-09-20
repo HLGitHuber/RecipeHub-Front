@@ -56,8 +56,8 @@ const RecipeForm = () => {
     if (!formData.recipeText) {
       newErrors.recipeText = 'Recipe description is required.';
     }
-    if (formData.recipeText.length<100) {
-      newErrors.recipeText = 'Recipe description has to consist of at least 100 signs.';
+    if (formData.recipeText.length<50) {
+      newErrors.recipeText = 'Recipe description has to consist of at least 50 signs.';
     }
 
 
