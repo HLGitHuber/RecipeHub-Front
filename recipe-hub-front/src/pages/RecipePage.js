@@ -5,6 +5,8 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import "../css/basicPage.css";
 import apiSettings from '../config/apisettings.js'
+import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 
 const RecipePage = () => {
@@ -45,9 +47,9 @@ const RecipePage = () => {
     }
     return (
       <div>
-
         <div className='recipeName'>
           <h2 className='heading'>{recipe.name}</h2> 
+          
           <Checkbox onChange={handleChange}
             inputProps={{ 'aria-label': 'controlled' }} 
             icon={<FavoriteBorder />} 
@@ -67,7 +69,9 @@ const RecipePage = () => {
   return (
   <div className='background'>
       <div className='container'>
-
+      <Link to="/" className='home-link'>
+        <HomeIcon className="home-icon" style={{ fontSize: 60, color: 'orange' }}/>
+      </Link>
         {DisplayRecipe()}
       </div>
   </div>
