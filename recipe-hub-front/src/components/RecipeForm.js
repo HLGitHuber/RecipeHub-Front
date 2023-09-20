@@ -3,6 +3,8 @@ import "../css/registrationForm.css"
 import axios from 'axios';
 import apiSettings from '../config/apisettings';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField'; // Import TextField
+import Button from '@mui/material/Button'; // Import Button
 
 const RecipeForm = () => {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const RecipeForm = () => {
 
   const [errors, setErrors] = useState({
     name: '',
-    empreparationTimeMinail: '',
+    preparationTimeMin: '',
     preparationTimeMax: '',
     calories: '',
     recipeText: '',
@@ -33,35 +35,55 @@ const RecipeForm = () => {
     }));
   };
 
- 
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const newErrors = { ...errors };
+  
+    if (name === 'name' && !value) {
+      newErrors.name = 'Recipe name is required.';
+    } else {
+      newErrors.name = ''; // Clear the error if it's not empty
+    }
+  
+    if (name === 'preparationTimeMin' && !value) {
+      newErrors.preparationTimeMin = 'Minimum preparation time is required.';
+    } else {
+      newErrors.preparationTimeMin = ''; // Clear the error if it's not empty
+    }
+  
+    if (name === 'preparationTimeMax' && !value) {
+      newErrors.preparationTimeMax = 'Maximum preparation time is required.';
+    } else if (name === 'preparationTimeMax' && formData.preparationTimeMax < formData.preparationTimeMin) {
+      newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
+    } else {
+      newErrors.preparationTimeMax = ''; // Clear the error if it's not empty and criteria are met
+    }
+  
+    if (name === 'calories' && !value) {
+      newErrors.calories = 'Calories are required.';
+    } else {
+      newErrors.calories = ''; // Clear the error if it's not empty
+    }
+  
+    if (name === 'recipeText' && !value) {
+      newErrors.recipeText = 'Recipe description is required.';
+    } else if (name === 'recipeText' && value.length < 50) {
+      newErrors.recipeText = 'Recipe description has to consist of at least 50 characters.';
+    } else {
+      newErrors.recipeText = ''; // Clear the error if it's not empty and criteria are met
+    }
+  
+    setErrors(newErrors);
+  };
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newErrors = {};
-    if (!formData.name) {
-      newErrors.recipeName = 'Recipe name is required.';
-    }
-    if (!formData.preparationTimeMin) {
-      newErrors.preparationTimeMin = 'Minimum preparation time is required.';
-    }
-    if (!formData.preparationTimeMax) {
-      newErrors.preparationTimeMax = 'Maximum preparation time is required.';
-    }
-    if (formData.preparationTimeMax<formData.preparationTimeMin) {
-        newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
-    }
-    if (!formData.calories) {
-      newErrors.calories = 'Calories are required.';
-    }
-    if (!formData.recipeText) {
-      newErrors.recipeText = 'Recipe description is required.';
-    }
-    if (formData.recipeText.length<50) {
-      newErrors.recipeText = 'Recipe description has to consist of at least 50 signs.';
-    }
+    // Check if there are any errors in the current form data
+    const hasErrors = Object.values(errors).some((error) => !!error);
 
-
-    if (Object.keys(newErrors).length === 0) {
+    if (!hasErrors) {
       axios({
         method: 'post',
         url: apiSettings.apiUrlAddRecipe,
@@ -81,8 +103,6 @@ const RecipeForm = () => {
           console.log('formData', formData);
           console.log('Error', error);
         })
-    } else {
-      setErrors(newErrors);
     }
   };
 
@@ -91,64 +111,81 @@ const RecipeForm = () => {
       <h2 className="registration-title">Recipe Form</h2>
       <form className="registration-form" onSubmit={handleSubmit}>
         <div>
-        <span className="error">{errors.name}</span>
-          <input
+          <TextField
             className='input'
+            color='success' //error info success warning
             type="text"
             name="name"
-            placeholder="Recipe name"
-            sx={{ backgroundColor: 'bisque', ml: 1, flex: 1 }}
+            label="Recipe name"
+            sx={{ mb: 2 }}
             value={formData.name}
             onChange={handleChange}
+            onBlur={handleBlur} // Handle blur event
+            error={!!errors.name}
+            helperText={errors.name || ' '}
           />
         </div>
         <div>
-        <span className="error">{errors.preparationTimeMin}</span>
-          <input
+          <TextField
             className='input'
             type="number"
+            color='success'
             name="preparationTimeMin"
-            placeholder="preparationTimeMin"
+            label="Minimum preparation time"
             value={formData.preparationTimeMin}
             onChange={handleChange}
+            onBlur={handleBlur} // Handle blur event
+            error={!!errors.preparationTimeMin}
+            helperText={errors.preparationTimeMin || ' '}
           />
         </div>
         <div>
-        <span className="error">{errors.preparationTimeMax}</span>
-          <input
+          <TextField
             className='input'
             type="number"
+            color='success'
             name="preparationTimeMax"
-            placeholder="preparationTimeMax"
+            label="Maximum preparation time"
             value={formData.preparationTimeMax}
             onChange={handleChange}
+            onBlur={handleBlur} // Handle blur event
+            error={!!errors.preparationTimeMax}
+            helperText={errors.preparationTimeMax || ' '}
           />
         </div>
         <div>
-        <span className="error">{errors.calories}</span>
-          <input
+          <TextField
             className='input'
             type="number"
+            color='success'
             name="calories"
-            placeholder="calories"
+            label="Calories"
             value={formData.calories}
             onChange={handleChange}
+            onBlur={handleBlur} // Handle blur event
+            error={!!errors.calories}
+            helperText={errors.calories || ' '}
           />
         </div>
         <div>
-        <span className="error">{errors.recipeText}</span>
-          <textarea
+          <TextField
             className='input'
             type="text"
+            color='success'
             name="recipeText"
-            placeholder="recipe description"
+            label="Recipe description"
+            multiline // Add this to make it multiline
+            rows={4} // Customize the number of rows
             value={formData.recipeText}
             onChange={handleChange}
-            rows="7" 
-            cols="70"
+            onBlur={handleBlur} // Handle blur event
+            error={!!errors.recipeText}
+            helperText={errors.recipeText || ' '}
           />
         </div>
-        <button type="submit">next step</button>
+        <Button type="submit" variant="contained" color="primary">
+          Next Step
+        </Button>
       </form>
     </div>
   );
