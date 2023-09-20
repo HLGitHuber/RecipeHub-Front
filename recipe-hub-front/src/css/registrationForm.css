@@ -27,13 +27,8 @@
   }
   
   .registration-form label {
+    color: black;
     font-weight: bold;
-  }
-  
-  .registration-form input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
   
   .registration-link {
@@ -42,7 +37,7 @@
   }
   
   .registration-link a {
-    color: #007bff;
+    color: black;
     text-decoration: none;
   }
   
@@ -51,8 +46,9 @@
   }
   
   button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+    background-color: bisque;
+    font-weight: bold;
+    color: black;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -61,7 +57,7 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: yellowgreen;
   }
   
   .input { 

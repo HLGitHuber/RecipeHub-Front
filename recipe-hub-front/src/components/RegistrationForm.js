@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Button from '@mui/material/Button';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -141,9 +142,10 @@ const RegistrationForm = () => {
             type="text"
             name="UserName"
             label="Username"
-            variant="outlined"
+            variant="filled"
             fullWidth
-            sx={{ marginBottom: 2 }} // Add any additional styling you need
+            sx={{ marginBottom: 2, '& label.Mui-focused': {color: 'black'}}} 
+            InputProps={{ disableUnderline: true }}
             value={formData.UserName}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -157,9 +159,10 @@ const RegistrationForm = () => {
             type="email"
             name="Email"
             label="Email"
-            variant="outlined"
+            variant="filled"
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2, '& label.Mui-focused': {color: 'black'}}} 
+            InputProps={{ disableUnderline: true }}
             value={formData.Email}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -173,15 +176,16 @@ const RegistrationForm = () => {
             type={showPassword ? 'text' : 'password'}
             name="Password"
             label="Password"
-            variant="outlined"
+            variant="filled"
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2, '& label.Mui-focused': {color: 'black'}}} 
             value={formData.Password}
             onChange={handleChange}
             onBlur={handleBlur}
             error={!!errors.Password}
             helperText={errors.Password || ' '}
             InputProps={{
+              disableUnderline: true,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -202,9 +206,10 @@ const RegistrationForm = () => {
             type='password'
             name="ConfirmPassword"
             label="Confirm Password"
-            variant="outlined"
+            variant="filled"
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2, '& label.Mui-focused': {color: 'black'}}} 
+            InputProps={{ disableUnderline: true }}
             value={formData.ConfirmPassword}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -212,7 +217,13 @@ const RegistrationForm = () => {
             helperText={errors.ConfirmPassword || ' '}
           />
         </div>
-        <button type="submit">Register</button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ marginTop: 2 }}
+        >
+          Register
+        </Button>
       </form>
     </div>
   );
