@@ -6,6 +6,8 @@ import SearchBar from '../components/Searchbar';
 import axios from 'axios';
 import apiSettings from '../config/apisettings.js';
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 const AddIngredientsPage = () => {
     let {id: recipeId} = useParams();
@@ -90,6 +92,9 @@ const AddIngredientsPage = () => {
     return(
         <div className='background'>
             <div className='container'>
+              <Link to="/" className='home-link'>
+                  <HomeIcon className="home-icon" style={{ fontSize: 60, color: 'orange'}}/>
+              </Link>
                 <h2 className='header'>Add ingredients to your recipe</h2>
                 <div className='adding-ingredients-container'>
                     <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
