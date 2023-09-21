@@ -49,6 +49,11 @@ html {
 .text {
   margin-left: 25px;
   width:60%;
+
+}
+
+.icon {
+  vertical-align: middle;
 }
 
 .line {

@@ -3,6 +3,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
+import TimerIcon from '@mui/icons-material/Timer';
+import KitchenIcon from '@mui/icons-material/Kitchen';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import "../css/basicPage.css";
 import apiSettings from '../config/apisettings.js';
 import { Link } from 'react-router-dom';
@@ -27,7 +31,7 @@ const RecipePage = () => {
     }
 
     fetchRecipe();
-  }, [id]); // Include 'id' in the dependency array
+  }, [id]); 
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -60,7 +64,6 @@ const RecipePage = () => {
       <div>
         <div className='recipeName'>
           <h2 className='heading'>{recipe.name}</h2>
-
           <Checkbox
             onChange={handleChange}
             inputProps={{ 'aria-label': 'controlled' }}
@@ -68,13 +71,13 @@ const RecipePage = () => {
             checkedIcon={<Favorite />}
           />
         </div>
-        <p className='text'>Time to prepare (in minutes): {recipe.preparationTimeMin}-{recipe.preparationTimeMax}</p>
-        <p className='text'>Ingredients list:</p>
+        <h4 className='text'><TimerIcon className='icon'/> Time to prepare (in minutes): {recipe.preparationTimeMin}-{recipe.preparationTimeMax}</h4>
+        <h4 className='text'><KitchenIcon className='icon'/> Ingredients list:</h4>
         {DisplayIngredients({ recipe })}
-        <p className='text'>Description:</p>
-        <p className='text'>{recipe.recipeText}</p>
-        <p className='text'>Calories:</p>
+        <h4 className='text'><CalculateIcon className='icon'/> Calories:</h4>
         <p className='text'>{recipe.calories}</p>
+        <h4 className='text'><TextSnippetIcon className='icon'/> Description:</h4>
+        <p className='text'>{recipe.recipeText}</p>
       </div>
     )
   }
