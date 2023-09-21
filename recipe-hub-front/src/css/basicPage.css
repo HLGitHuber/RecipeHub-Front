@@ -56,6 +56,14 @@ html {
   vertical-align: middle;
 }
 
+.summing-icon {
+  display: flex;
+  justify-content: center; 
+  text-align: center;
+  width: 60%;
+}
+
+
 .line {
   display: inline-block;
 }

@@ -7,6 +7,7 @@ import TimerIcon from '@mui/icons-material/Timer';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import "../css/basicPage.css";
 import apiSettings from '../config/apisettings.js';
 import { Link } from 'react-router-dom';
@@ -89,6 +90,9 @@ const RecipePage = () => {
           <HomeIcon className="home-icon" style={{ fontSize: 60, color: 'orange' }} />
         </Link>
         {DisplayRecipe()}
+        <div className='summing-icon'>
+          <DinnerDiningIcon sx={{ color: 'orange', fontSize: 250 }} />
+        </div>
       </div>
     </div>
   )
