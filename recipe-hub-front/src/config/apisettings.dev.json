@@ -6,5 +6,6 @@
     "apiUrlUserRegister": "https://localhost:7128/api/users/register",
     "apiUrlUserLogin": "https://localhost:7128/api/users/login",
     "apiUrlAddRecipe": "https://localhost:7128/api/Recipe/add-recipe",
+    "apiUrlFavourites": "https://localhost:7128/api/favourites",
     "apiUrlBase": "https://localhost:7128/api"
   }

@@ -1,39 +1,65 @@
 import React, {useEffect, useState} from 'react'
 import { RecipeTable } from '../components/RecipesTable';
-import settings from '../appsettings.json'
 import "../css/userPage.css"
 import { Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home'; 
 import { Link } from 'react-router-dom';
+import apiSettings from '../config/apisettings.js';
 
 function UserPanel(){
 
-    const favrecipes =[
-        {name: "Meat lasagne", cooktime :35, id: 1},
-        {name: "Spaghetti Bolognese", cooktime :30, id: 2},
-        {name: "Chicken with rice", cooktime :20, id: 3},
-    ]
+    const [favRecipes, setFavRecipes] = useState([]);
+    const [userRecipes, setUserRecipes] = useState([]);
+    const [currentUser, setCurrentUser] = useState([]);
 
-        const userRecipes =[
-        {name: "Vegan lasagne", cooktime :35, id: 1},
-        {name: "Spaghetti Vegan", cooktime :30, id: 2},
-        {name: "Vegetables with rice", cooktime :20, id: 3},
-    ]
+   useEffect(() => {
+    const apiUrl = ``; //tu nie ma endpointu
+
+    const fetchCurrentUser = async () => {
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          setCurrentUser(data);
+        } catch (error) {
+          console.error('Error fetching current user:', error);
+        }
+      };
+      fetchCurrentUser();
+  }, []);
+
+    useEffect(() => {
+        const apiUrl = `${apiSettings.apiUrlFavourites}/${currentUser.id}`;
     
+        const fetchFavoriteRecipes = async () => {
+            if (currentUser) {
+              try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                setFavRecipes(data);
+              } catch (error) {
+                console.error('Error fetching favorite recipes:', error);
+              }
+            }
+          };
+          fetchFavoriteRecipes();
+      }, []);
 
-   const [data, setData] = useState([])
-   useEffect(()=>{
-    async function fetchData(){
-        try{
-            var loggedUserID=1;  
-            const response = await fetch(settings.UserDataAPI+loggedUserID)
-            const json = await response.json();
-            setData(json);
-        } catch (error){
-            console.log('Error fetching data: ', error)
-        }}
-        fetchData();
-    }, []);
+      useEffect(() => {
+        const apiUrl = ``; //tu nie ma endpointu
+    
+        const fetchUserRecipes = async () => {
+            if (currentUser) {
+              try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                setUserRecipes(data);
+              } catch (error) {
+                console.error('Error fetching user recipes:', error);
+              }
+            }
+          };
+          fetchUserRecipes();
+      }, []);
     
     return(
         <div className='background'>
@@ -45,8 +71,8 @@ function UserPanel(){
                     </Link>
                 </div>
                 <div className='second-header-container'>
-                    <h3 className='second-heading'>User name: {data.userName}</h3>
-                    <h3 className='second-heading'>Name: {data.firstName} {data.lastName}</h3>
+                    <h3 className='second-heading'>User name: {currentUser.userName}</h3>
+                    <h3 className='second-heading'>Name: {currentUser.firstName} {currentUser.lastName}</h3>
                     <Link to="/add-recipe">
                         <Button color="warning" variant='contained'>Add new recipe</Button>
                     </Link>
@@ -59,7 +85,7 @@ function UserPanel(){
                                 <th><h5>Cooking time (in minutes)</h5></th>
                             </tr>
                         </thead>
-                        <RecipeTable rows={favrecipes}/>
+                        <RecipeTable rows={favRecipes}/>
                     </table>
                     <table>
                         <thead>
