@@ -19,6 +19,7 @@ const RecipePage = () => {
   const { state } = location;
   const [checked, setChecked] = useState(false);
   const [recipe, setRecipe] = useState(null); // Initialize as null
+  const [ingredients, setIngredients] = useState(null); // Initialize as null
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -34,6 +35,21 @@ const RecipePage = () => {
     fetchRecipe();
   }, [id]); 
 
+  useEffect(() => {
+    async function fetchIngredientsForRecipe() {
+      try {
+        const response = await fetch(apiSettings.apiUrlIngredientsForRecipe + id);
+        const data = await response.json();
+        setIngredients(data.value);
+      } catch (error) {
+        console.error('Error fetching ingredients:', error);
+      }
+    }
+
+    fetchIngredientsForRecipe();
+  }, [id]); 
+
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (!checked) {
@@ -43,19 +59,23 @@ const RecipePage = () => {
     }
   };
 
-  const DisplayIngredients = ({ recipe }) => {
-    if (!recipe || !recipe.ingredients || recipe.ingredients.length === 0) {
-      return <p></p>;
+  const DisplayIngredients = ({ ingredients }) => {
+    if (!ingredients || ingredients.length === 0) {
+      return <p>No ingredients available.</p>;
     }
-
-    const ingredientList = recipe.ingredients.join('; ');
-
+  
     return (
       <div>
-        <p className='text'>{ingredientList}</p>
+        <h4 className='text'><KitchenIcon className='icon'/> Ingredients list:</h4>
+        <ul>
+          {ingredients.map((ingredient, index) => (
+            <li className='text' key={index}>{ingredient}</li>
+          ))}
+        </ul>
       </div>
     );
   };
+  
 
   const DisplayRecipe = () => {
     if (!recipe) {
@@ -74,9 +94,8 @@ const RecipePage = () => {
         </div>
         <h4 className='text'><TimerIcon className='icon'/> Time to prepare (in minutes): {recipe.preparationTimeMin}-{recipe.preparationTimeMax}</h4>
         <h4 className='text'><KitchenIcon className='icon'/> Ingredients list:</h4>
-        {DisplayIngredients({ recipe })}
-        <h4 className='text'><CalculateIcon className='icon'/> Calories:</h4>
-        <p className='text'>{recipe.calories}</p>
+        {DisplayIngredients({ ingredients })}
+        <h4 className='text'><CalculateIcon className='icon'/> Calories: {recipe.calories}</h4>
         <h4 className='text'><TextSnippetIcon className='icon'/> Description:</h4>
         <p className='text'>{recipe.recipeText}</p>
       </div>

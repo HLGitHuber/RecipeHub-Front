@@ -5,6 +5,7 @@
     "apiUrlRecipeIngredient": "https://localhost:7128/api/recipeingredient",
     "apiUrlUserRegister": "https://localhost:7128/api/users/register",
     "apiUrlUserLogin": "https://localhost:7128/api/users/login",
+    "apiUrlIngredientsForRecipe": "https://localhost:7128/api/recipeingredient/ingredientnames/",
     "apiUrlAddRecipe": "https://localhost:7128/api/Recipe/add-recipe",
     "apiUrlFavourites": "https://localhost:7128/api/favourites",
     "apiUrlBase": "https://localhost:7128/api"
