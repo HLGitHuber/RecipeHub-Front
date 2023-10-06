@@ -20,6 +20,7 @@ const RecipePage = () => {
   const [checked, setChecked] = useState(false);
   const [recipe, setRecipe] = useState(null); // Initialize as null
   const [ingredients, setIngredients] = useState(null); // Initialize as null
+  const [userId, setUserId] = useState(null); // Initialize as null, TODO: somehow needed to be set
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -52,10 +53,17 @@ const RecipePage = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    if (!checked) {
-      alert('added to favorites');
-    } else {
-      alert('removed from favorites');
+    if (userId === null) {
+      alert('You need to log in first, go to homepage and click the login');
+    }
+    else {
+      if (!checked) {
+        //TODO here post request
+        alert('added to favorites');
+      } else {
+        //TODO here delete request
+        alert('removed from favorites');
+      }
     }
   };
 
