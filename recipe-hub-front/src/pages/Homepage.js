@@ -9,6 +9,8 @@ import { orange } from "@mui/material/colors";
 import SearchIcon from '@mui/icons-material/Search';
 import apiSettings from '../config/apisettings.js';
 import Modal from '../components/LoginModal';
+import { Link } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Homepage = () => {
@@ -83,12 +85,28 @@ const Homepage = () => {
     fetchProducts();
   }, []);
 
-
-  return (
-    <div className='main'>
+  
+  const DisplayIcon = () => {
+    if (localStorage.getItem('token') === null)
+    {
+      return (
         <div className="loginButton">        
           <Button variant="contained" sx={{ backgroundColor: orange[500], fontSize: 15}} onClick={openModal}>Login</Button>
         </div>
+      )
+    }
+    else {
+      return (
+        <Link to="/userpanel" className='home-link'>
+          <AccountCircleIcon className="home-icon" style={{ fontSize: 60, color: 'orange' }} />
+        </Link>
+      )
+    }
+  }
+
+  return (
+    <div className='main'>
+      {DisplayIcon()}
       <Helmet>
         <style>
             {'body { background-color: #798726; }'}

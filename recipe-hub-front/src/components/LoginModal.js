@@ -27,6 +27,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     .then(response => {
       const { token } = response.data;
       localStorage.setItem('token', token);
+      alert("You're succesfully logged in")
       onClose();
     })
     .catch(error => {
@@ -37,6 +38,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         setError('An error occurred');
       }
     })
+
 
     
   };
