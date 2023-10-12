@@ -14,13 +14,11 @@ import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 
 const RecipePage = () => {
-  const location = useLocation();
   let { id } = useParams();
-  const { state } = location;
   const [checked, setChecked] = useState(false);
   const [recipe, setRecipe] = useState(null); // Initialize as null
   const [ingredients, setIngredients] = useState(null); // Initialize as null
-  const [userId, setUserId] = useState(null); // Initialize as null, TODO: somehow needed to be set
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -53,19 +51,57 @@ const RecipePage = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    if (userId === null) {
-      alert('You need to log in first, go to homepage and click the login');
-    }
-    else {
       if (!checked) {
-        //TODO here post request
-        alert('added to favorites');
+        handleAddToFavorites();
       } else {
-        //TODO here delete request
-        alert('removed from favorites');
-      }
+        handleRemoveFromFavorites();
     }
   };
+
+  const handleAddToFavorites = () => {
+    fetch(apiSettings.apiUrlAddToFavourites+id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          setChecked(true);
+          alert('Added to favorites');
+        } else {
+          setChecked(false);
+          alert('Failed to add to favorites, maybe you are not logged in? Go to homepage and login');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+
+  const handleRemoveFromFavorites = () => {
+    fetch(apiSettings.apiUrlRemoveFromFavourites+id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          setChecked(false);
+          alert('Removed from favorites');
+        } else {
+          alert('Failed to remove from favorites');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
 
   const DisplayIngredients = ({ ingredients }) => {
     if (!ingredients || ingredients.length === 0) {
@@ -101,7 +137,6 @@ const RecipePage = () => {
           />
         </div>
         <h4 className='text'><TimerIcon className='icon'/> Time to prepare (in minutes): {recipe.preparationTimeMin}-{recipe.preparationTimeMax}</h4>
-        <h4 className='text'><KitchenIcon className='icon'/> Ingredients list:</h4>
         {DisplayIngredients({ ingredients })}
         <h4 className='text'><CalculateIcon className='icon'/> Calories: {recipe.calories}</h4>
         <h4 className='text'><TextSnippetIcon className='icon'/> Description:</h4>
