@@ -47,10 +47,12 @@ const RecipeForm = () => {
 
     if (name === 'preparationTimeMin' && !value) {
       newErrors.preparationTimeMin = 'Minimum preparation time is required.';
+    } else if (name === 'preparationTimeMin' && formData.preparationTimeMax < formData.preparationTimeMin) {
+      newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
     } else if (name === 'preparationTimeMin') {
       newErrors.preparationTimeMin = ''; 
     }
-  
+
     if (name === 'preparationTimeMax' && !value) {
       newErrors.preparationTimeMax = 'Maximum preparation time is required.';
     } else if (name === 'preparationTimeMax' && formData.preparationTimeMax < formData.preparationTimeMin) {
