@@ -37,42 +37,41 @@ const RecipeForm = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    const newErrors = { ...errors };
-  
+    const newErrors = {...errors};
+
     if (name === 'name' && !value) {
       newErrors.name = 'Recipe name is required.';
-    } else {
-      newErrors.name = ''; // Clear the error if it's not empty
+    } else if (name === 'name') {
+      newErrors.name = ''; 
     }
-  
+
     if (name === 'preparationTimeMin' && !value) {
       newErrors.preparationTimeMin = 'Minimum preparation time is required.';
-    } else {
-      newErrors.preparationTimeMin = ''; // Clear the error if it's not empty
+    } else if (name === 'preparationTimeMin') {
+      newErrors.preparationTimeMin = ''; 
     }
   
     if (name === 'preparationTimeMax' && !value) {
       newErrors.preparationTimeMax = 'Maximum preparation time is required.';
     } else if (name === 'preparationTimeMax' && formData.preparationTimeMax < formData.preparationTimeMin) {
       newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
-    } else {
-      newErrors.preparationTimeMax = ''; // Clear the error if it's not empty and criteria are met
+    } else if (name === 'preparationTimeMax') {
+      newErrors.preparationTimeMax = ''; 
     }
   
     if (name === 'calories' && !value) {
       newErrors.calories = 'Calories are required.';
-    } else {
-      newErrors.calories = ''; // Clear the error if it's not empty
+    } else if (name === 'calories') {
+      newErrors.calories = ''; 
     }
   
     if (name === 'recipeText' && !value) {
       newErrors.recipeText = 'Recipe description is required.';
     } else if (name === 'recipeText' && value.length < 50) {
       newErrors.recipeText = 'Recipe description has to consist of at least 50 characters.';
-    } else {
-      newErrors.recipeText = ''; // Clear the error if it's not empty and criteria are met
+    } else if (name === 'recipeText') {
+      newErrors.recipeText = ''; 
     }
-  
     setErrors(newErrors);
   };
   
@@ -80,7 +79,6 @@ const RecipeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if there are any errors in the current form data
     const hasErrors = Object.values(errors).some((error) => !!error);
 
     if (!hasErrors) {
