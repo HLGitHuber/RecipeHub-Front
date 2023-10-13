@@ -11,9 +11,6 @@
     font-size: 60px;
     font-weight: 500;
     color: bisque;
-    
-    /* white-space: nowrap;
-    overflow: hidden; */
   }
 
 .coolHeader {
@@ -26,16 +23,9 @@
   }
 
   .myProducts {
-    /* overflow: auto;
-    display: flex;
-    flex-direction: column; */
     position: relative;
   }
 
-  /* .myProducts > .scrollable-content {
-    flex-grow: 1;
-    overflow: auto;
-  } */
   .scrollable-content {
     max-height: 500px;
     overflow-y: auto;
@@ -53,7 +43,6 @@
 
   .left-element {
     flex: 1;
-    /* Styles for the left element */
   }
 
 .right-element {
@@ -85,10 +74,9 @@
     font-size: 40px;
   }
 }
-/* Media query for small screens */
 @media (max-width: 768px) {
   .right-element {
-    display: none; /* Hide the right element on small screens */
+    display: none;
   }
   .coolHeader h1 {
     font-size: 40px;

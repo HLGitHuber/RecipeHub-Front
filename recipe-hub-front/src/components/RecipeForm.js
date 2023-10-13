@@ -3,8 +3,8 @@ import "../css/registrationForm.css"
 import axios from 'axios';
 import apiSettings from '../config/apisettings';
 import { useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField'; // Import TextField
-import Button from '@mui/material/Button'; // Import Button
+import TextField from '@mui/material/TextField'; 
+import Button from '@mui/material/Button'; 
 
 const RecipeForm = () => {
   const navigate = useNavigate();
@@ -113,14 +113,14 @@ const RecipeForm = () => {
         <div>
           <TextField
             className='input'
-            color='success' //error info success warning
+            color='success' 
             type="text"
             name="name"
             label="Recipe name"
             sx={{ mb: 2 }}
             value={formData.name}
             onChange={handleChange}
-            onBlur={handleBlur} // Handle blur event
+            onBlur={handleBlur} 
             error={!!errors.name}
             helperText={errors.name || ' '}
           />
@@ -134,7 +134,7 @@ const RecipeForm = () => {
             label="Minimum preparation time"
             value={formData.preparationTimeMin}
             onChange={handleChange}
-            onBlur={handleBlur} // Handle blur event
+            onBlur={handleBlur}
             error={!!errors.preparationTimeMin}
             helperText={errors.preparationTimeMin || ' '}
           />
@@ -148,7 +148,7 @@ const RecipeForm = () => {
             label="Maximum preparation time"
             value={formData.preparationTimeMax}
             onChange={handleChange}
-            onBlur={handleBlur} // Handle blur event
+            onBlur={handleBlur} 
             error={!!errors.preparationTimeMax}
             helperText={errors.preparationTimeMax || ' '}
           />
@@ -162,7 +162,7 @@ const RecipeForm = () => {
             label="Calories"
             value={formData.calories}
             onChange={handleChange}
-            onBlur={handleBlur} // Handle blur event
+            onBlur={handleBlur} 
             error={!!errors.calories}
             helperText={errors.calories || ' '}
           />
@@ -174,11 +174,11 @@ const RecipeForm = () => {
             color='success'
             name="recipeText"
             label="Recipe description"
-            multiline // Add this to make it multiline
-            rows={4} // Customize the number of rows
+            multiline 
+            rows={4} 
             value={formData.recipeText}
             onChange={handleChange}
-            onBlur={handleBlur} // Handle blur event
+            onBlur={handleBlur} 
             error={!!errors.recipeText}
             helperText={errors.recipeText || ' '}
           />

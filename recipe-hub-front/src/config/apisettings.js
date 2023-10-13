@@ -9,4 +9,3 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export default apiSettings;
-// Use apiSettings.apiUrl in your code to make API requests

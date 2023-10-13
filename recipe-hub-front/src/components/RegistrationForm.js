@@ -42,10 +42,10 @@ const RegistrationForm = () => {
       if (!emailRegex.test(value)) {
         newErrors[name] = 'Invalid email address.';
       } else {
-        newErrors[name] = ''; // Clear the error if it's a valid email
+        newErrors[name] = '';
       }
     } else {
-      newErrors[name] = ''; // Clear errors for other fields
+      newErrors[name] = '';
     }
 
     setErrors(newErrors);
@@ -71,7 +71,6 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if there are any errors in the current form data
     const hasErrors = Object.values(errors).some((error) => !!error);
 
     if (!hasErrors) {
@@ -91,7 +90,6 @@ const RegistrationForm = () => {
           console.log('Error', error);
         })
     } else {
-      // You can choose to display a general form error here or handle it differently
       console.log('Form has validation errors.');
     }
   };
@@ -115,7 +113,7 @@ const RegistrationForm = () => {
         newErrors.Password =
           'Password has to have 8 characters including small and big letters, number, and special character.';
       } else {
-        newErrors.Password = ''; // Clear the error if it's a valid password
+        newErrors.Password = '';
       }
     }
 
@@ -125,7 +123,7 @@ const RegistrationForm = () => {
       } else if (formData.Password !== value) {
         newErrors.ConfirmPassword = 'Passwords do not match.';
       } else {
-        newErrors.ConfirmPassword = ''; // Clear the error if it's valid
+        newErrors.ConfirmPassword = '';
       }
     }
 
