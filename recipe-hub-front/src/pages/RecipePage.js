@@ -18,7 +18,7 @@ const RecipePage = () => {
   let { id } = useParams();
   const { state } = location;
   const [checked, setChecked] = useState(false);
-  const [recipe, setRecipe] = useState(null); // Initialize as null
+  const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
     async function fetchRecipe() {
