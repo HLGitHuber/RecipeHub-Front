@@ -37,45 +37,45 @@ const RecipeForm = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    const newErrors = {...errors};
-
-    if (name === 'name' && !value) {
-      newErrors.name = 'Recipe name is required.';
-    } else if (name === 'name') {
-      newErrors.name = ''; 
-    }
-
-    if (name === 'preparationTimeMin' && !value) {
-      newErrors.preparationTimeMin = 'Minimum preparation time is required.';
-    } else if (name === 'preparationTimeMin' && formData.preparationTimeMax < formData.preparationTimeMin) {
-      newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
-    } else if (name === 'preparationTimeMin') {
-      newErrors.preparationTimeMin = ''; 
-    }
-
-    if (name === 'preparationTimeMax' && !value) {
-      newErrors.preparationTimeMax = 'Maximum preparation time is required.';
-    } else if (name === 'preparationTimeMax' && formData.preparationTimeMax < formData.preparationTimeMin) {
-      newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
-    } else if (name === 'preparationTimeMax') {
-      newErrors.preparationTimeMax = ''; 
+    const newErrors = { ...errors };
+  
+    switch (name) {
+      case 'name':
+        newErrors.name = !value ? 'Recipe name is required.' : '';
+        break;
+      case 'preparationTimeMin':
+        newErrors.preparationTimeMin = !value ? 'Minimum preparation time is required.' : '';
+        if (formData.preparationTimeMax < formData.preparationTimeMin) {
+          newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
+        } else {
+          newErrors.preparationTimeMax = '';
+        }
+        break;
+      case 'preparationTimeMax':
+        newErrors.preparationTimeMax = !value ? 'Maximum preparation time is required.' : '';
+        if (formData.preparationTimeMax < formData.preparationTimeMin) {
+          newErrors.preparationTimeMax = 'Maximum preparation time has to be bigger than minimum.';
+        } else {
+          newErrors.preparationTimeMax = '';
+        }
+        break;
+      case 'calories':
+        newErrors.calories = !value ? 'Calories are required.' : '';
+        break;
+      case 'recipeText':
+        if (value.length < 50) {
+          newErrors.recipeText = 'Recipe description has to consist of at least 50 characters.';
+        } else {
+          newErrors.recipeText = '';
+        }
+        break;
+      default:
+        break;
     }
   
-    if (name === 'calories' && !value) {
-      newErrors.calories = 'Calories are required.';
-    } else if (name === 'calories') {
-      newErrors.calories = ''; 
-    }
-  
-    if (name === 'recipeText' && !value) {
-      newErrors.recipeText = 'Recipe description is required.';
-    } else if (name === 'recipeText' && value.length < 50) {
-      newErrors.recipeText = 'Recipe description has to consist of at least 50 characters.';
-    } else if (name === 'recipeText') {
-      newErrors.recipeText = ''; 
-    }
     setErrors(newErrors);
   };
+  
   
 
   const handleSubmit = (e) => {
